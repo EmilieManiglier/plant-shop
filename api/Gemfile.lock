@@ -100,6 +100,7 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     pg (1.4.5)
+    psych (3.3.4)
     puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -168,6 +169,7 @@ DEPENDENCIES
   byebug
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
+  psych (< 4)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.6, >= 6.0.6.1)
@@ -179,4 +181,4 @@ RUBY VERSION
    ruby 3.1.4p223
 
 BUNDLED WITH
-   2.1.4
+   2.5.4
