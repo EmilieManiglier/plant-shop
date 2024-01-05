@@ -1,3 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  if Rails.env.development?
+    mount Rswag::Api::Engine => '/api-docs'
+    mount Rswag::Ui::Engine => '/api-docs'
+  end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :products
+    end
+  end
 end
