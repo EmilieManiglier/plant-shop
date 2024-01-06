@@ -1,10 +1,9 @@
 @layer base {
 	.h1 {
-    @apply font-rubik font-bold text-2xl lg:text-3xl lg:leading-10;
+    @apply font-rubik font-bold text-2xl lg:text-xl lg:leading-10;
   }
 
   .h2 {
     @apply font-rubik font-bold text-xl lg:text-2xl;
   }
-
 }

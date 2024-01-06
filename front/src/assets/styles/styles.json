@@ -37,8 +37,9 @@
     }
   },
   "fontFamily": {
-    "rubik": ["Rubik", "sans-serif"],
-    "sans": ["Uni Sans", "sans-serif"]
+    "cagliostro": ["Cagliostro", "sans-serif"],
+    "roboto": ["Roboto", "sans-serif"],
+    "rubik": ["Rubik", "sans-serif"]
   },
   "fontSize": {
     "2xxl": "2rem"

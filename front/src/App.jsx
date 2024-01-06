@@ -1,20 +1,11 @@
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import {
-  AdminPage,
-  AuthPage,
-  Footer,
-  Header,
-  NotFoundPage,
-  UserPage
-} from 'components';
+import { AdminPage, AuthPage, Footer, Header, NotFoundPage, UserPage } from 'components';
 import { roles } from 'constants';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
-  const { t } = useTranslation();
   const user = useSelector((state) => state.user);
 
   const authRoutes = [
@@ -25,12 +16,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
+      {user.isLoggedIn && <Header />}
 
       <main className="main">
-        <h1 className="subtitle">{t('meta.title')}</h1>
-        {user.token && <div>{t('auth:login.welcome', { firstname: user?.firstname, lastname: user?.lastname })}</div>}
-
         <Routes>
           <Route
             index

@@ -1,0 +1,7 @@
+.auth-page-img {
+	@apply h-screen relative;
+
+	&::after {
+		@apply content-[''] absolute inset-0 bg-black/25;
+	}
+}

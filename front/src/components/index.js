@@ -5,6 +5,7 @@ export { default as NotFoundPage } from 'components/pages/NotFoundPage';
 export { default as AuthPage } from 'components/pages/AuthPage';
 /* Base */
 export { default as Icon } from 'components/base/images/Icon';
+export { default as Logo } from 'components/base/images/Logo';
 /* Forms */
 export { default as FormInput } from 'components/base/form/FormInput';
 export { default as FormTextArea } from 'components/base/form/FormTextArea';

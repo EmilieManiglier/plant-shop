@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon } from 'components';
 
+import 'assets/styles/components/_form-input.scss';
+
 const FormInput = ({
   name,
   label,

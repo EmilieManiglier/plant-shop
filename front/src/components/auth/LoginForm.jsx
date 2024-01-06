@@ -1,22 +1,24 @@
+import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
-import { FormInput } from 'components';
+import { FormInput, Logo } from 'components';
 import { mailRegex } from 'constants';
-import { routes } from 'router';
+
+import 'assets/styles/components/_login-form.scss';
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const { register, errors, isValid, isLoading, onSubmit, submitClasses } = useFormContext();
+  const { isValid, isLoading, onSubmit, submitClasses } = useFormContext();
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="login-form">
+      <Logo className="mx-auto w-fit mb-12" />
+
       <FormInput
         name="email"
         label={t('form:email')}
         type="email"
-        register={register}
         rules={{
           required: true,
           pattern: {
@@ -24,26 +26,21 @@ const LoginForm = () => {
             message: 'emailInvalid'
           }
         }}
-        errors={errors}
-        className="mt-6 is-block"
+        className="mt-6"
         autoComplete="email"
+        placeholder={t('form:placeholders.email')}
       />
       <FormInput
         name="password"
         label={t('form:password')}
         type="password"
-        register={register}
         rules={{ required: true }}
-        errors={errors}
-        className="mt-6 is-block"
+        className="mt-6"
         autoComplete="current-password"
+        placeholder={t('form:placeholders.password')}
       />
 
-      <Link to={routes.forgotPassword.path} className="my-4 is-block has-text-right">
-        {t('auth:forgotPassword.label')}
-      </Link>
-
-      <button type="submit" disabled={!isValid || isLoading} className={submitClasses}>
+      <button type="submit" disabled={!isValid || isLoading} className={clsx('mx-auto', submitClasses)}>
         {t('form:submit')}
       </button>
     </form>
