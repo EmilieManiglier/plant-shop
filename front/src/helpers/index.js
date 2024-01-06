@@ -1,2 +1,2 @@
 export { deepCaseConverter } from 'helpers/deepCaseConverter';
-export { addUuid } from 'helpers/format';
+export { addUuid, formatLocalizedNumber, formatLocalizedCurrency } from 'helpers/format';

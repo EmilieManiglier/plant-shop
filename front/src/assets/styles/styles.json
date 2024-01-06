@@ -43,5 +43,9 @@
   },
   "fontSize": {
     "2xxl": "2rem"
+  },
+  "screens": {
+    "3xl": "1920px",
+    "4xl": "2224px"
   }
 }

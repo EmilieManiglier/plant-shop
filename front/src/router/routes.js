@@ -14,7 +14,7 @@ const routes = {
   login: {
     path: '/connexion'
   },
-  plants: {
+  products: {
     path: '/plantes',
     authorize: [roles.user]
   },

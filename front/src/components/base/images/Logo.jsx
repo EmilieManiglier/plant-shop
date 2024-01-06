@@ -14,7 +14,7 @@ const Logo = ({ className = '', color = 'green' }) => {
   }
 
   return (
-    <div className={clsx('flex gap-1 items-center', logoColor, className)}>
+    <div className={clsx('flex gap-1 items-center logo', logoColor, className)}>
       <span className="font-cagliostro text-4xl font-bold">{t('meta.titlePart1')}</span>
       <img src={plantIcon} alt="" className="w-8 h-8 leaf-green" />
       <span className="font-cagliostro text-4xl font-bold">{t('meta.titlePart2')}</span>

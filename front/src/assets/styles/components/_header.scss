@@ -13,3 +13,15 @@
 		}
 	}
 }
+
+.app:not(.accueil) {
+	.header {
+		.logo {
+			@apply text-green-500;
+		}
+
+		.navbar-item {
+			@apply lg:text-gray-600;
+		}
+	}
+}

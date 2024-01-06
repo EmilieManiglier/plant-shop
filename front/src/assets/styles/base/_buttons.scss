@@ -1,7 +1,7 @@
 @layer components {
 	.btn {
     /* stylelint-disable max-line-length */
-    @apply rounded-full px-6 py-3 bg-green-500 text-white flex items-center justify-center transition-colors duration-300 ease-in-out outline-none cursor-pointer uppercase;
+    @apply rounded-full px-6 py-3 bg-green-500 text-white flex items-center justify-center transition-colors duration-300 ease-in-out outline-none cursor-pointer;
     /* stylelint-enable max-line-length */
 
     &:focus-visible {

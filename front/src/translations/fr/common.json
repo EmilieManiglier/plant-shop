@@ -1,6 +1,8 @@
 {
   "buttons": {
     "accept": "Accepter",
+    "addToCart": "Ajouter au panier",
+    "addToFavorites": "Ajouter aux favoris",
     "buyPlants": "Acheter vos plantes",
     "decline": "Refuser",
     "readMore": "En savoir plus"
@@ -35,7 +37,7 @@
   "navigation": {
     "copyright": "© {{ year }} Leaf Place. Développé par Émilie Maniglier",
     "home": "Accueil",
-    "plants": "Plantes"
+    "products": "Plantes"
   },
   "notFound": "Cette page n'existe pas",
   "terms": {

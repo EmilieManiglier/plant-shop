@@ -1,6 +1,6 @@
 @layer base {
   .main-container {
-    @apply px-8 xl:px-20 2xl:px-40 3xl:px-72 print:px-2;
+    @apply px-8 pt-32 xl:px-20 2xl:px-40 3xl:px-72 print:px-2;
   }
 
 	.img-cover {
@@ -60,25 +60,6 @@
   }
 }
 
-.header-gradient {
-  @screen lg {
-    &::after {
-      @apply content-[''] absolute top-0 left-0 w-full h-full bg-no-repeat z-10;
-
-      background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(rgba(255 255 255 / 95%)),
-        to(rgba(0 0 0 / 0%))
-      );
-    }
-
-    &.gradient-small::after {
-      @apply h-44;
-    }
-  }
-}
 
 
 

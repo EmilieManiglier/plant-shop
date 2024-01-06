@@ -8,8 +8,9 @@ import { resetUser } from 'store';
 
 import 'assets/styles/components/_header.scss';
 
+const links = ['home', 'products'];
+
 const Header = () => {
-  const links = ['home', 'plants'];
   const { t } = useTranslation();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();

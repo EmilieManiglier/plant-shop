@@ -1,11 +1,16 @@
+import clsx from 'clsx';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import { AuthPage, Footer, Header, HomePage, NotFoundPage } from 'components';
+import { AuthPage, Footer, Header, HomePage, NotFoundPage, ProductsPage } from 'components';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  const location = useLocation();
+
+  const containerClass = useMemo(() => location.pathname.split('/')?.[1] ?? '', [location.pathname]);
 
   const authRoutes = [
     { path: routes.login.path, type: 'login' },
@@ -14,7 +19,7 @@ const App = () => {
   ];
 
   return (
-    <div className="app">
+    <div className={clsx('app', containerClass)}>
       {user.isLoggedIn && <Header />}
 
       <main className="main">
@@ -36,6 +41,16 @@ const App = () => {
             element={
               <PrivateRoute authorize={routes.home.authorize}>
                 <HomePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path={routes.products.path}
+            element={
+              <PrivateRoute authorize={routes.products.authorize}>
+                <ProductsPage />
               </PrivateRoute>
             }
           />
