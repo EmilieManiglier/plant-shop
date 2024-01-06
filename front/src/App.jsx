@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { AdminPage, AuthPage, Footer, Header, NotFoundPage, UserPage } from 'components';
-import { roles } from 'constants';
+import { AuthPage, Footer, Header, HomePage, NotFoundPage } from 'components';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
@@ -22,14 +21,8 @@ const App = () => {
         <Routes>
           <Route
             index
-            path={routes.home.path}
-            element={
-              user.isLoggedIn ? (
-                <Navigate to={routes[`${user.role === roles?.admin ? 'adminPage' : 'userPage'}`].path} />
-              ) : (
-                <Navigate to={routes.login.path} />
-              )
-            }
+            path={routes.default.path}
+            element={user.isLoggedIn ? <Navigate to={routes.home.path} /> : <Navigate to={routes.login.path} />}
           />
 
           {!user.isLoggedIn &&
@@ -39,20 +32,10 @@ const App = () => {
 
           <Route
             exact
-            path={routes.adminPage.path}
+            path={routes.home.path}
             element={
-              <PrivateRoute authorize={routes.adminPage.authorize}>
-                <AdminPage />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            exact
-            path={routes.userPage.path}
-            element={
-              <PrivateRoute authorize={routes.userPage.authorize}>
-                <UserPage />
+              <PrivateRoute authorize={routes.home.authorize}>
+                <HomePage />
               </PrivateRoute>
             }
           />

@@ -1,25 +1,18 @@
 import { useTranslation } from 'react-i18next';
 
-import { Icon } from 'components';
+import { Logo } from 'components';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="footer">
-      <p className="mb-4">{t('meta.title')}</p>
-      <a
-        className="is-link"
-        href="https://github.com/Kinoba/boilerplate-react"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="icon-text">
-          <span className="icon">
-            <Icon name={['fab', 'github']} />
-          </span>
-          <span>See on Github</span>
-        </span>
-      </a>
+    <footer className="bg-gray-700 text-white text-center px-4 py-12">
+      <Logo color="white" className="justify-center mb-12" />
+
+      <div className="border-t border-white pt-12">
+        <p>{t('navigation.copyright', { year })}</p>
+      </div>
     </footer>
   );
 };

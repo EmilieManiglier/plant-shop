@@ -126,7 +126,7 @@ const FormSelect = ({
         </div>
 
         <span className="is-flex-shrink-0 ml-auto mt-1">
-          <Icon name="angle-down" classes="arrow" />
+          <Icon name="angle-down" className="arrow" />
         </span>
       </div>
 

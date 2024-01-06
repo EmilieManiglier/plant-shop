@@ -1,7 +1,27 @@
 {
   "buttons": {
     "accept": "Accepter",
-    "decline": "Refuser"
+    "buyPlants": "Acheter vos plantes",
+    "decline": "Refuser",
+    "readMore": "En savoir plus"
+  },
+  "home": {
+    "advantages": {
+      "delivery": {
+        "description": "Livraison à domicile",
+        "title": "Livraison"
+      },
+      "payment": {
+        "description": "Paiement sécurisé par Stripe",
+        "title": "Paiement sécurisé"
+      },
+      "quality": {
+        "description": "Plantes de qualité",
+        "title": "Qualité"
+      }
+    },
+    "title": "Faites entrer le printemps dans votre maison",
+    "subtitle": "Pour les amoureux des plantes"
   },
   "infiniteScroll": {
     "end": "Vous avez tout vu !"
@@ -11,6 +31,11 @@
     "title": "Leaf Place - Achetez et vendez vos plantes entre particuliers",
     "titlePart1": "Leaf",
     "titlePart2": "Place"
+  },
+  "navigation": {
+    "copyright": "© {{ year }} Leaf Place. Développé par Émilie Maniglier",
+    "home": "Accueil",
+    "plants": "Plantes"
   },
   "notFound": "Cette page n'existe pas",
   "terms": {

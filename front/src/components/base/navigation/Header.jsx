@@ -2,11 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import { Logo } from 'components';
 import routes from 'router/routes';
 import { resetUser } from 'store';
 
+import 'assets/styles/components/_header.scss';
+
 const Header = () => {
-  const showDesignSystem = ['development', 'staging'].includes(process.env.NODE_ENV);
+  const links = ['home', 'plants'];
   const { t } = useTranslation();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -21,32 +24,41 @@ const Header = () => {
 
   return (
     <header className="header">
-      <nav className="navbar" role="navigation">
-        <div className="navbar-brand">
-          <NavLink className="navbar-item" to={routes.home.path}>
-            <img className="w-auto h-6" src={process.env.PUBLIC_URL + '/logo192.png'} />
-          </NavLink>
-        </div>
-        {/* Remove is-active is-shadowless classes to hide navbar-menu on mobile, or toggle is-active to show it */}
-        <div className="navbar-menu is-active is-shadowless">
-          {showDesignSystem && (
-            <NavLink className="navbar-item" to={routes.designSystem.path}>
-              DesignSystem
-            </NavLink>
-          )}
+      <nav className="flex gap-4 justify-between items-center p-4">
+        <NavLink to={routes.home.path}>
+          <Logo color="white" />
+        </NavLink>
 
+        <ul className="flex items-center gap-4">
           {!user?.token && (
-            <NavLink className="navbar-item" to={routes.login.path}>
-              {t('auth:login.button')}
-            </NavLink>
+            <li>
+              <NavLink className="navbar-item" to={routes.login.path}>
+                {t('auth:login.button')}
+              </NavLink>
+            </li>
           )}
 
           {user?.token && (
-            <a className="navbar-item" role="button" onClick={logoutUser}>
-              {t('auth:logout.button')}
-            </a>
+            <>
+              {links.map((link, i) => (
+                <li key={`header-link-${i}`}>
+                  <NavLink
+                    className={({ isActive }) => `navbar-item ${isActive ? 'active' : ''}`}
+                    to={routes[link].path}
+                  >
+                    {t(`navigation.${link}`)}
+                  </NavLink>
+                </li>
+              ))}
+
+              <li>
+                <a className="navbar-item" role="button" onClick={logoutUser}>
+                  {t('auth:logout.button')}
+                </a>
+              </li>
+            </>
           )}
-        </div>
+        </ul>
       </nav>
     </header>
   );

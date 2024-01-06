@@ -58,7 +58,7 @@ const AuthPage = ({ type }) => {
     reset({ ...defaultValues });
   };
 
-  const logUser = async (/* data */) => {
+  const logUser = async () => {
     try {
       setIsLoading(true);
       // TODO : remove this and insert authentication logic here
@@ -67,8 +67,7 @@ const AuthPage = ({ type }) => {
 
       if (data) {
         dispatch(setUser({ ...data, isLoggedIn: true }));
-        const path = data?.role === roles.admin ? routes.adminPage.path : routes.userPage.path;
-        navigate(path, { replace: true });
+        navigate(routes.home.path, { replace: true });
       }
     } finally {
       setIsLoading(false);

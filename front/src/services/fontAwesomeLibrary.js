@@ -7,12 +7,14 @@ import {
   faAngleUp,
   faEnvelope,
   faExternalLink,
+  faHandshake,
   faLock,
   faPen,
   faPlus,
   faSort,
   faSortDown,
   faSortUp,
+  faTruckFast,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,6 +24,7 @@ library.add(
   faAngleLeft,
   faAngleRight,
   faEnvelope,
+  faHandshake,
   faLock,
   faPen,
   faPlus,
@@ -31,6 +34,7 @@ library.add(
   faSort,
   faSortUp,
   faSortDown,
+  faTruckFast,
   faExternalLink
 );
 export const faIconsList = library.definitions;

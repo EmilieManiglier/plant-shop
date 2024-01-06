@@ -20,6 +20,14 @@
       }
     }
 
+    &.white {
+      @apply bg-white text-green-500;
+
+      &:hover:not(:disabled) {
+        @apply bg-green-500 text-white;
+      }
+    }
+
     &:disabled {
       @apply opacity-50 cursor-not-allowed;
     }

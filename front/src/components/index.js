@@ -1,6 +1,6 @@
 /* Pages */
 export { default as AdminPage } from 'components/pages/AdminPage';
-export { default as UserPage } from 'components/pages/UserPage';
+export { default as HomePage } from 'components/pages/HomePage';
 export { default as NotFoundPage } from 'components/pages/NotFoundPage';
 export { default as AuthPage } from 'components/pages/AuthPage';
 /* Base */
