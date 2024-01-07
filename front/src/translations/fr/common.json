@@ -22,8 +22,8 @@
         "title": "Qualité"
       }
     },
-    "title": "Faites entrer le printemps dans votre maison",
-    "subtitle": "Pour les amoureux des plantes"
+    "subtitle": "Pour les amoureux des plantes",
+    "title": "Faites entrer le printemps dans votre maison"
   },
   "infiniteScroll": {
     "end": "Vous avez tout vu !"
@@ -37,7 +37,10 @@
   "navigation": {
     "copyright": "© {{ year }} Leaf Place. Développé par Émilie Maniglier",
     "home": "Accueil",
-    "products": "Plantes"
+    "favorites": "Mes favoris",
+    "logout": "Se déconnecter",
+    "products": "Plantes",
+    "profile": "Profil"
   },
   "notFound": "Cette page n'existe pas",
   "terms": {

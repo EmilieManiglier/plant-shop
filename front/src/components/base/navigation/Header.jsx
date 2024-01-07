@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { Logo } from 'components';
+import { Logo, UserDropdown } from 'components';
 import routes from 'router/routes';
 import { resetUser } from 'store';
 
@@ -30,7 +30,7 @@ const Header = () => {
           <Logo color="white" />
         </NavLink>
 
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-x-8">
           {!user?.token && (
             <li>
               <NavLink className="navbar-item" to={routes.login.path}>
@@ -53,9 +53,7 @@ const Header = () => {
               ))}
 
               <li>
-                <a className="navbar-item" role="button" onClick={logoutUser}>
-                  {t('auth:logout.button')}
-                </a>
+                <UserDropdown />
               </li>
             </>
           )}

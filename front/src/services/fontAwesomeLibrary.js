@@ -13,10 +13,12 @@ import {
   faLock,
   faPen,
   faPlus,
+  faRightFromBracket,
   faSort,
   faSortDown,
   faSortUp,
   faTruckFast,
+  faUser,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,6 +34,7 @@ library.add(
   faLock,
   faPen,
   faPlus,
+  faRightFromBracket,
   faXmark,
   faExternalLink,
   faGithub,
@@ -39,6 +42,7 @@ library.add(
   faSortUp,
   faSortDown,
   faTruckFast,
+  faUser,
   faExternalLink
 );
 export const faIconsList = library.definitions;
