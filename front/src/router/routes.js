@@ -18,6 +18,10 @@ const routes = {
     path: '/plantes',
     authorize: [roles.user]
   },
+  productShow: {
+    path: '/plante/:id',
+    authorize: [roles.user]
+  },
   resetPassword: {
     path: '/nouveau-mot-de-passe'
   }

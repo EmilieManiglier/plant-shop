@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import { AuthPage, Footer, Header, HomePage, NotFoundPage, ProductsPage } from 'components';
+import { AuthPage, Footer, Header, HomePage, NotFoundPage, ProductShowPage, ProductsPage } from 'components';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
@@ -51,6 +51,16 @@ const App = () => {
             element={
               <PrivateRoute authorize={routes.products.authorize}>
                 <ProductsPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path={routes.productShow.path}
+            element={
+              <PrivateRoute authorize={routes.productShow.authorize}>
+                <ProductShowPage />
               </PrivateRoute>
             }
           />

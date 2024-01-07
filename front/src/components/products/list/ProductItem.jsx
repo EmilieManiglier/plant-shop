@@ -1,19 +1,31 @@
 import clsx from 'clsx';
 import { string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 
 import { Icon } from 'components';
 import { formatLocalizedCurrency } from 'helpers';
+import { routes } from 'router';
 
 import plant from 'assets/img/plant-1.jpg';
 import 'assets/styles/components/_product-item.scss';
 
 const ProductItem = ({ className = '' }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const navigateToProductShow = () => {
+    /* TODO - add product id */
+    navigate(generatePath(routes.productShow.path, { id: 1 }));
+  };
 
   return (
     <div className={clsx('product-item', className)}>
+      <button type="button" className="absolute inset-0 opacity-0" onClick={navigateToProductShow}>
+        {t('buttons.seePlantShow')}
+      </button>
+
       <button
         type="button"
         className="product-favorite-btn"
