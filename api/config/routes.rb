@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, skip: :all
+
+  devise_scope :user do
+    scope '/api/v1/users', defaults: { format: :json } do
+      post   '/sign_in',       to: 'api/v1/users/sessions#create'
+      delete '/sign_out',      to: 'api/v1/users/sessions#destroy'
+    end
+  end
+
   if Rails.env.development?
     mount Rswag::Api::Engine => '/api-docs'
     mount Rswag::Ui::Engine => '/api-docs'
