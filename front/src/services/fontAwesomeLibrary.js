@@ -5,6 +5,7 @@ import {
   faAngleLeft,
   faAngleRight,
   faAngleUp,
+  faBagShopping,
   faCartArrowDown,
   faDroplet,
   faEnvelope,
@@ -21,6 +22,7 @@ import {
   faSortUp,
   faSun,
   faTemperatureHalf,
+  faTrashCan,
   faTruckFast,
   faUser,
   faXmark
@@ -31,6 +33,7 @@ library.add(
   faAngleUp,
   faAngleLeft,
   faAngleRight,
+  faBagShopping,
   faCartArrowDown,
   faDroplet,
   faEnvelope,
@@ -49,6 +52,7 @@ library.add(
   faSortDown,
   faSun,
   faTemperatureHalf,
+  faTrashCan,
   faTruckFast,
   faUser,
   faExternalLink

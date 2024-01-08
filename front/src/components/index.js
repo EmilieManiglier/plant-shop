@@ -36,5 +36,7 @@ export { default as ResetPasswordForm } from 'components/auth/ResetPasswordForm'
 export { default as ProductsList } from 'components/products/list/ProductsList';
 export { default as ProductItem } from 'components/products/list/ProductItem';
 export { default as ProductShowPage } from 'components/products/show/ProductShowPage';
-/* USer */
+/* User */
 export { default as UserDropdown } from 'components/user/shared/UserDropdown';
+/* Cart */
+export { default as Cart } from 'components/cart/Cart';

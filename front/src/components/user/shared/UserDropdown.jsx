@@ -1,9 +1,13 @@
 import clsx from 'clsx';
 import { bool, node, shape, string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactSelect, { components } from 'react-select';
 
 import { Icon } from 'components';
+import { routes } from 'router';
+import { resetUser } from 'store';
 
 import 'assets/styles/components/_user-dropdown.scss';
 
@@ -33,8 +37,19 @@ const MenuOption = (props) => {
 const userOptions = [{ label: 'profile' }, { label: 'favorites' }, { label: 'logout' }];
 
 const UserDropdown = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleAction = (option) => {
     console.log('handle action', option);
+    if (option?.label === 'logout') logoutUser();
+  };
+
+  const logoutUser = async () => {
+    // TODO: Remove this and insert API call
+    await new Promise((res) => setTimeout(res, 500));
+    dispatch(resetUser());
+    navigate(routes.login.path, { replace: true });
   };
 
   return (

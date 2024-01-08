@@ -1,0 +1,17 @@
+.cart {
+	@apply bg-white fixed overflow-hidden transform translate-x-full transition-transform duration-300 ease-in-out top-20 inset-0 flex flex-col lg:z-30 lg:w-2/5 2xl:w-2/6 lg:h-screen lg:top-0 lg:p-4 lg:left-[initial];
+
+	&.open {
+		@apply translate-x-0;
+	}
+}
+
+.cart-quantity {
+	.label {
+		@apply hidden;
+	}
+
+	.input {
+		@apply min-h-[initial] p-0 w-12 h-9 text-center;
+	}
+}

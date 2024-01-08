@@ -19,7 +19,7 @@ const Icon = ({ name, className = '', libraryIconProps = null }) => {
     if (isLibraryIcon) {
       return (
         <FontAwesomeIcon
-          className={`fa ${className}`}
+          className={`fa fa-icon ${className}`}
           icon={name}
           aria-hidden="true"
           focusable="false"

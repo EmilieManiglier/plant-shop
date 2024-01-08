@@ -4,9 +4,18 @@
     "addToCart": "Ajouter au panier",
     "addToFavorites": "Ajouter aux favoris",
     "buyPlants": "Acheter vos plantes",
+    "checkout": "Valider ma commande",
+    "closeCart": "Fermer le panier",
     "decline": "Refuser",
+    "deleteItem": "Supprimer ce produit du panier",
     "readMore": "En savoir plus",
+    "seeCart": "Voir le panier",
     "seePlantShow": "Voir la fiche de la plante"
+  },
+  "cart": {
+    "empty": "Votre panier est vide",
+    "emptyButton": "Acheter des plantes",
+    "title": "Votre panier"
   },
   "home": {
     "advantages": {

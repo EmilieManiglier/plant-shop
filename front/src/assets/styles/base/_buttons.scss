@@ -32,6 +32,14 @@
       @apply opacity-50 cursor-not-allowed;
     }
 
+    &.gray {
+      @apply bg-gray-200 text-gray-700 rounded-md p-2 w-8 h-8;
+
+      &:not(:disabled):hover {
+        @apply bg-gray-300;
+      }
+    }
+
     &.large {
       @apply py-4;
     }
