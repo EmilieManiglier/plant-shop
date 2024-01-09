@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+  set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+  echo 'Usage: ./reset-db
+
+Drops, creates, migrates and seeds your development/test database.
+
+'
+  exit
+fi
+
+cd "$(dirname "$0")"
+
+main() {
+  cd ../api
+
+  bundle install > /dev/null
+  bundle exec rails log:clear tmp:clear
+  bundle exec rails db:drop db:create db:migrate
+  # We seed in a separate rails command to reload the schema (eg.: deleted columns would still be referenced otherwise)
+  LIGHT_SEEDS=false bundle exec rails db:seed
+}
+
+main "$@"
