@@ -5,7 +5,7 @@ module Api
     module Users
       # SessionsController
       class SessionsController < Devise::SessionsController
-        respond_to :json
+        include ApiConcern
 
         def create
           super do |resource|

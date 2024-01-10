@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     scope '/api/v1/users', defaults: { format: :json } do
       post   '/sign_in',       to: 'api/v1/users/sessions#create'
       delete '/sign_out',      to: 'api/v1/users/sessions#destroy'
+      post   '/sign_up',       to: 'api/v1/users/registrations#create'
+      put    '/account_update', to: 'api/v1/users/registrations#update'
     end
   end
 
