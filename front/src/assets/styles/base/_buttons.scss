@@ -1,0 +1,51 @@
+@layer components {
+	.btn {
+    /* stylelint-disable max-line-length */
+    @apply rounded-full px-6 py-3 bg-green-500 text-white flex items-center justify-center transition-colors duration-300 ease-in-out outline-none cursor-pointer;
+    /* stylelint-enable max-line-length */
+
+    &:focus-visible {
+      @apply ring-2 ring-gray-700 ring-offset-2 shadow-md shadow-gray-500;
+    }
+
+    &:hover:not(:disabled) {
+      @apply bg-success-500;
+    }
+
+    &.outlined {
+      @apply bg-white border-2 border-green-500 text-green-500;
+
+      &:hover:not(:disabled) {
+        @apply bg-white border-success-500 text-success-500;
+      }
+    }
+
+    &.white {
+      @apply bg-white text-green-500;
+
+      &:hover:not(:disabled) {
+        @apply bg-green-500 text-white;
+      }
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+
+    &.gray {
+      @apply bg-gray-200 text-gray-700 rounded-md p-2 w-8 h-8;
+
+      &:not(:disabled):hover {
+        @apply bg-gray-300;
+      }
+    }
+
+    &.large {
+      @apply py-4;
+    }
+
+    &.small {
+      @apply py-2 h-fit;
+    }
+  }
+}

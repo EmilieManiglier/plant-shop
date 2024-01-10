@@ -9,7 +9,7 @@ import { faIconsList } from 'services/fontAwesomeLibrary';
 /* Custom icons */
 import * as customIcons from 'assets/img/icons';
 
-const Icon = ({ name, classes = '', libraryIconProps = null }) => {
+const Icon = ({ name, className = '', libraryIconProps = null }) => {
   const isLibraryIcon = useMemo(() => {
     const flattenFaIconsList = flatten(keys(faIconsList).map((k) => keys(faIconsList[k])));
     return flattenFaIconsList.includes(name[1]) || flattenFaIconsList.includes(name);
@@ -19,7 +19,7 @@ const Icon = ({ name, classes = '', libraryIconProps = null }) => {
     if (isLibraryIcon) {
       return (
         <FontAwesomeIcon
-          className={`fa ${classes}`}
+          className={`fa fa-icon ${className}`}
           icon={name}
           aria-hidden="true"
           focusable="false"
@@ -29,7 +29,7 @@ const Icon = ({ name, classes = '', libraryIconProps = null }) => {
     } else if (!isLibraryIcon && customIcons[name]) {
       return (
         <svg
-          className={`custom ${classes}`}
+          className={`custom ${className}`}
           viewBox="0 0 24 24"
           fill="currentColor"
           preserveAspectRatio="xMidYMid meet"
@@ -41,7 +41,7 @@ const Icon = ({ name, classes = '', libraryIconProps = null }) => {
       );
     } else {
       return (
-        <span className={`no-icon ${classes}`} aria-hidden="true">
+        <span className={`no-icon ${className}`} aria-hidden="true">
           &#10074;
         </span>
       );
@@ -53,7 +53,7 @@ const Icon = ({ name, classes = '', libraryIconProps = null }) => {
 
 Icon.propTypes = {
   name: oneOfType([string, array]).isRequired,
-  classes: string,
+  className: string,
   libraryIconProps: object /* See FontAwesomeIcon component props or current icon library component */
 };
 

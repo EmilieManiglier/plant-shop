@@ -1,19 +1,23 @@
 {
+  "email": "Email",
+  "emailInvalid": "Format d'email invalide",
   "firstname": "Prénom",
   "lastname": "Nom",
-  "email": "Email",
+  "maxLength": "Le champ {{ field }} doit faire moins de {{ length }} caractères",
+  "minLength": "Le champ {{ field }} doit faire au moins {{ length }} caractères",
   "password": "Mot de passe",
   "passwordConfirmation": "Répétez le mot de passe",
   "passwordConfirmationInvalid": "Les mots de passe doivent être identiques",
-  "required": "Ce champ est requis",
-  "emailInvalid": "Format d'email invalide",
-  "minLength": "Le champ {{ field }} doit faire au moins {{ length }} caractères",
-  "maxLength": "Le champ {{ field }} doit faire moins de {{ length }} caractères",
-  "termsLabel": "J'ai lu et j'accepte les <0>conditions générales d'utilisation</0>",
-  "terms": "Conditions générales d'utilisation",
-  "select": {
-    "empty": "Aucune option disponible",
-    "default": "Choisissez une option"
+  "placeholders": {
+    "email": "Votre email",
+    "password": "Votre mot de passe"
   },
-  "submit": "Valider"
+  "required": "Ce champ est requis",
+  "select": {
+    "default": "Choisissez une option",
+    "empty": "Aucune option disponible"
+  },
+  "submit": "Valider",
+  "terms": "Conditions générales d'utilisation",
+  "termsLabel": "J'ai lu et j'accepte les <0>conditions générales d'utilisation</0>"
 }

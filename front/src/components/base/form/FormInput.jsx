@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon } from 'components';
 
+import 'assets/styles/components/_form-input.scss';
+
 const FormInput = ({
   name,
   label,
@@ -40,7 +42,7 @@ const FormInput = ({
       <span className="label">{label}</span>
 
       <div className={clsx('input-container', { 'has-icon': icon })}>
-        {icon.length > 0 && <Icon name={icon} classes="input-icon" />}
+        {icon.length > 0 && <Icon name={icon} className="input-icon" />}
         <input
           name={name}
           type={type}

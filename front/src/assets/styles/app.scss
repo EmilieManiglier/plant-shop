@@ -1,3 +1,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Basics */
+@import 'assets/styles/base/typography';
+@import 'assets/styles/base/utilities';
+@import 'assets/styles/base/buttons';
+@import 'assets/styles/base/form';
+
+html {
+	@apply font-roboto;
+}

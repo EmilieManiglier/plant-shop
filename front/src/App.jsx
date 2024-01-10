@@ -1,21 +1,16 @@
-import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import {
-  AdminPage,
-  AuthPage,
-  Footer,
-  Header,
-  NotFoundPage,
-  UserPage
-} from 'components';
-import { roles } from 'constants';
+import { AuthPage, Footer, Header, HomePage, NotFoundPage, ProductShowPage, ProductsPage } from 'components';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
-  const { t } = useTranslation();
   const user = useSelector((state) => state.user);
+  const location = useLocation();
+
+  const containerClass = useMemo(() => location.pathname.split('/')?.[1] ?? '', [location.pathname]);
 
   const authRoutes = [
     { path: routes.login.path, type: 'login' },
@@ -24,24 +19,15 @@ const App = () => {
   ];
 
   return (
-    <div className="app">
-      <Header />
+    <div className={clsx('app', containerClass)}>
+      {user.isLoggedIn && <Header />}
 
       <main className="main">
-        <h1 className="subtitle">{t('meta.title')}</h1>
-        {user.token && <div>{t('auth:login.welcome', { firstname: user?.firstname, lastname: user?.lastname })}</div>}
-
         <Routes>
           <Route
             index
-            path={routes.home.path}
-            element={
-              user.isLoggedIn ? (
-                <Navigate to={routes[`${user.role === roles?.admin ? 'adminPage' : 'userPage'}`].path} />
-              ) : (
-                <Navigate to={routes.login.path} />
-              )
-            }
+            path={routes.default.path}
+            element={user.isLoggedIn ? <Navigate to={routes.home.path} /> : <Navigate to={routes.login.path} />}
           />
 
           {!user.isLoggedIn &&
@@ -51,20 +37,30 @@ const App = () => {
 
           <Route
             exact
-            path={routes.adminPage.path}
+            path={routes.home.path}
             element={
-              <PrivateRoute authorize={routes.adminPage.authorize}>
-                <AdminPage />
+              <PrivateRoute authorize={routes.home.authorize}>
+                <HomePage />
               </PrivateRoute>
             }
           />
 
           <Route
             exact
-            path={routes.userPage.path}
+            path={routes.products.path}
             element={
-              <PrivateRoute authorize={routes.userPage.authorize}>
-                <UserPage />
+              <PrivateRoute authorize={routes.products.authorize}>
+                <ProductsPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path={routes.productShow.path}
+            element={
+              <PrivateRoute authorize={routes.productShow.authorize}>
+                <ProductShowPage />
               </PrivateRoute>
             }
           />

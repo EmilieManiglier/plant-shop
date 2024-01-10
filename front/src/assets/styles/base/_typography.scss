@@ -1,0 +1,13 @@
+@layer base {
+	.h1 {
+    @apply font-rubik font-bold text-3xl md:text-4xl md:leading-[3.5rem];
+  }
+
+  .h2 {
+    @apply font-rubik font-bold text-lg lg:text-xl;
+  }
+
+  .h3 {
+    @apply font-rubik font-bold text-lg;
+  }
+}

@@ -1,0 +1,41 @@
+.select-user {
+	&__indicator {
+		@apply text-gray-600 cursor-pointer lg:text-white;
+	}
+
+	&__control {
+		@apply flex-nowrap;
+	}
+}
+
+.app:not(.accueil) {
+	.select-user {
+		&__indicator {
+			@apply text-gray-600;
+		}
+	}
+}
+
+/* stylelint-disable */
+.select-user__menu-portal {
+  .select-user__menu {
+    @apply w-fit right-0 shadow-2xl rounded-lg;
+  }
+
+  .select-user__menu-list,
+  .select-user__menu-notice--no-options {
+		@apply w-fit rounded-lg;
+  }
+
+  .select-user__option,
+  .select-user__option--is-focused,
+  .select-user__option--is-selected,
+  .select-user__menu-notice--no-options {
+    @apply bg-white;
+  }
+
+  .select-user__menu-notice--no-options {
+		@apply w-[max-content] max-w-[15rem] p-2;
+  }
+}
+/* stylelint-enable */

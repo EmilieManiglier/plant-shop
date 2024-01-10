@@ -1,0 +1,65 @@
+@layer base {
+  .main-container {
+    @apply px-8 pt-32 xl:px-20 2xl:px-40 3xl:px-72 print:px-2;
+  }
+
+	.img-cover {
+		@apply w-full h-full object-cover;
+	}
+
+	.leaf-green {
+		filter: invert(11%) sepia(42%) saturate(1111%) hue-rotate(120deg) brightness(69%) contrast(101%);
+	}
+
+  .flex-center-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-center-between {
+    @apply flex items-center justify-between;
+  }
+
+  .flex-start-between {
+    @apply flex items-start justify-between;
+  }
+
+  .flex-center-start {
+    @apply flex items-center justify-start;
+  }
+
+  .flex-end-center {
+    @apply flex items-end justify-center;
+  }
+
+	.flex-col-center {
+		@apply flex flex-col items-center justify-center;
+	}
+
+  .disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .truncate-line {
+    /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    &.one-line {
+      -webkit-line-clamp: 1;
+    }
+
+    &.two-lines {
+      -webkit-line-clamp: 2;
+    }
+    /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
+  }
+
+  .translate-center-center {
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+
+
+

@@ -11,6 +11,9 @@ import { useSafeState } from 'hooks';
 import { routes } from 'router';
 import { setUser } from 'store';
 
+import authBackground from 'assets/img/background_1.jpg';
+import 'assets/styles/pages/_auth-page.scss';
+
 const AuthPage = ({ type }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,11 +40,11 @@ const AuthPage = ({ type }) => {
     trigger,
     getValues,
     formState: { errors, isValid }
-  } = useForm({ mode: 'all', defaultValues });
+  } = useForm({ mode: 'onBlur', defaultValues });
 
   const buttonClassList = useMemo(() => {
-    return clsx('mt-6 button is-primary is-borderless', {
-      'cursor-disallow is-light': !isValid,
+    return clsx('mt-6 btn', {
+      'cursor-disallow': !isValid,
       'is-loading': isLoading
     });
   }, [isLoading, isValid]);
@@ -55,7 +58,7 @@ const AuthPage = ({ type }) => {
     reset({ ...defaultValues });
   };
 
-  const logUser = async (/* data */) => {
+  const logUser = async () => {
     try {
       setIsLoading(true);
       // TODO : remove this and insert authentication logic here
@@ -64,8 +67,7 @@ const AuthPage = ({ type }) => {
 
       if (data) {
         dispatch(setUser({ ...data, isLoggedIn: true }));
-        const path = data?.role === roles.admin ? routes.adminPage.path : routes.userPage.path;
-        navigate(path, { replace: true });
+        navigate(routes.home.path, { replace: true });
       }
     } finally {
       setIsLoading(false);
@@ -127,14 +129,16 @@ const AuthPage = ({ type }) => {
   }, [type, isValid, isLoading, errors]);
 
   return (
-    <div className="columns">
-      <div className="column is-one-quarter-desktop">
-        <FormProvider {...formProviderValues}>
-          {type === 'login' && <LoginForm />}
-          {type === 'forgotPassword' && <ForgotPasswordForm />}
-          {type === 'resetPassword' && <ResetPasswordForm />}
-        </FormProvider>
+    <div className="min-h-screen relative">
+      <div className="auth-page-img">
+        <img src={authBackground} alt="" height="600" width="300" className="w-full h-full object-cover" />
       </div>
+
+      <FormProvider {...formProviderValues}>
+        {type === 'login' && <LoginForm />}
+        {type === 'forgotPassword' && <ForgotPasswordForm />}
+        {type === 'resetPassword' && <ResetPasswordForm />}
+      </FormProvider>
     </div>
   );
 };

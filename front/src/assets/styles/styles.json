@@ -1,0 +1,52 @@
+{
+  "colors": {
+    "gray": {
+      "50": "#fafbfc",
+      "100": "#f2f6f8",
+      "200": "#e9edf2",
+      "300": "#c1c7d0",
+      "400": "#b0b7c3",
+      "500": "#8a94a6",
+      "600": "#4e5d78",
+      "700": "#323b4b"
+    },
+    "green": {
+      "50": "#F5F7F4",
+      "300": "#01C194",
+      "500": "#019875"
+    },
+    "red": {
+      "200": "#ffbaaa",
+      "300": "#ff9982",
+      "500": "#ff5630"
+    },
+    "success": {
+      "200": "#99e4c3",
+      "300": "#79dcaf",
+      "500": "#38CB89"
+    },
+    "warning": {
+      "300": "#ffc652",
+      "500": "#FFAB00"
+    },
+    "yellow": {
+      "100": "#ffc72c0d",
+      "200": "#fff8e5",
+      "300": "#fff4d5",
+      "400": "#ffe7a4",
+      "500": "#ffc72c"
+    }
+  },
+  "fontFamily": {
+    "cagliostro": ["Cagliostro", "sans-serif"],
+    "roboto": ["Roboto", "sans-serif"],
+    "rubik": ["Rubik", "sans-serif"]
+  },
+  "fontSize": {
+    "2xxl": "2rem"
+  },
+  "screens": {
+    "3xl": "1920px",
+    "4xl": "2224px"
+  }
+}

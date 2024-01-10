@@ -1,28 +1,29 @@
 import { roles } from 'constants/roles';
 
 const routes = {
-  home: {
+  default: {
     path: '/'
-  },
-  designSystem: {
-    path: '/design-system'
-  },
-  login: {
-    path: '/connexion'
   },
   forgotPassword: {
     path: '/mot-de-passe-oublie'
   },
+  home: {
+    path: '/accueil',
+    authorize: [roles.user]
+  },
+  login: {
+    path: '/connexion'
+  },
+  products: {
+    path: '/plantes',
+    authorize: [roles.user]
+  },
+  productShow: {
+    path: '/plante/:id',
+    authorize: [roles.user]
+  },
   resetPassword: {
     path: '/nouveau-mot-de-passe'
-  },
-  adminPage: {
-    path: '/admin-page',
-    authorize: [roles.admin, roles.role1]
-  },
-  userPage: {
-    path: '/user-page',
-    authorize: [roles.user, roles.role2]
   }
 };
 

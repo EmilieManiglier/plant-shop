@@ -1,0 +1,50 @@
+/* Global form styles */
+@layer base {
+  label {
+    @apply block;
+  }
+
+  .label {
+    @apply block mb-2 font-bold text-sm text-gray-700 uppercase;
+  }
+
+  .input {
+    @apply min-h-12 bg-white border border-gray-300 text-gray-600 rounded-lg p-2 w-full;
+
+    &::placeholder {
+      @apply text-gray-500 font-thin;
+    }
+  }
+
+  .invalid {
+    .input {
+      @apply border-red-500 text-red-500;
+    }
+  }
+
+  .error-message {
+    @apply flex items-center gap-2 p-2 text-red-500 bg-red-500/25 rounded-md mt-2;
+  }
+
+  .registration-label {
+    @apply uppercase font-semibold text-sm text-gray-600;
+  }
+
+  /* Hide calendar icon on input type date in Chrome */
+  input[type='date']::-webkit-inner-spin-button,
+  input[type='date']::-webkit-calendar-picker-indicator {
+    @apply hidden;
+  }
+
+  /* stylelint-disable property-no-vendor-prefix */
+  input[type='number'] {
+    -moz-appearance: textfield;
+    outline: none;
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  /* stylelint-enable property-no-vendor-prefix */
+}
