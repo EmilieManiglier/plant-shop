@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-Product.create(name: 'Alocasia Regal Shield', description: 'lorem ipso', price: 20.00, stock: 10)
+load Rails.root.join('db/seeds/users.rb')
+load Rails.root.join('db/seeds/products.rb')
