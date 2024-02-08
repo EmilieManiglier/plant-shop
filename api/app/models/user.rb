@@ -4,6 +4,8 @@
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
+  has_many :favorites, dependent: :destroy
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,

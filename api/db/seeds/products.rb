@@ -24,3 +24,10 @@ products_ids = Product.all.ids
     product_id: products_ids.sample
   )
 end
+
+15.times do
+  Favorite.create!(
+    user_id: rand(1..10),
+    product_id: products_ids.sample
+  )
+end
