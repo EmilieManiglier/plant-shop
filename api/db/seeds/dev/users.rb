@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Faker::Config.locale = 'fr'
 
 10.times do |i|
