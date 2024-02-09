@@ -13,7 +13,24 @@ module Api
 
       # GET /products/1
       def show
-        render json: ProductSerializer.render(Product.find(params[:id]))
+        product = Product.find(params[:id])
+        render json: ProductSerializer.render(product)
+      end
+
+      def create
+        product = Product.new(permitted_params)
+
+        if product.save
+          render json: ProductSerializer.render(product), status: :created
+        else
+          render json: product.errors, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def permitted_params
+        params.permit(:name, :description, :price, :stock, :image)
       end
     end
   end
