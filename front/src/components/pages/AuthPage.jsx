@@ -1,13 +1,14 @@
 import clsx from 'clsx';
+import { isEmpty } from 'lodash';
 import { oneOf } from 'prop-types';
 import { useEffect, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { ForgotPasswordForm, LoginForm, ResetPasswordForm } from 'components';
-import { roles } from 'constants';
-import { useSafeState } from 'hooks';
+import { Banner, ForgotPasswordForm, LoginForm, ResetPasswordForm } from 'components';
+import { useFetch, useSafeState } from 'hooks';
 import { routes } from 'router';
 import { setUser } from 'store';
 
@@ -15,10 +16,15 @@ import authBackground from 'assets/img/background_1.jpg';
 import 'assets/styles/pages/_auth-page.scss';
 
 const AuthPage = ({ type }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useSafeState(false);
   const [requestPassword, setRequestPassword] = useSafeState({ success: false, email: '' });
+  const [authError, setAuthError] = useSafeState({ login: '' });
+
+  const { call: loginCall, loading: loginLoading } = useFetch();
+  const { loading: forgotPasswordLoading } = useFetch();
+  const { loading: resetPasswordLoading } = useFetch();
 
   const defaultValues = useMemo(() => {
     switch (type) {
@@ -42,6 +48,11 @@ const AuthPage = ({ type }) => {
     formState: { errors, isValid }
   } = useForm({ mode: 'onBlur', defaultValues });
 
+  const isLoading = useMemo(
+    () => loginLoading || forgotPasswordLoading || resetPasswordLoading,
+    [loginLoading, forgotPasswordLoading, resetPasswordLoading]
+  );
+
   const buttonClassList = useMemo(() => {
     return clsx('mt-6 btn', {
       'cursor-disallow': !isValid,
@@ -59,41 +70,36 @@ const AuthPage = ({ type }) => {
   };
 
   const logUser = async () => {
-    try {
-      setIsLoading(true);
-      // TODO : remove this and insert authentication logic here
-      await new Promise((res) => setTimeout(res, 1500));
-      const data = { token: 'testToken', firstname: 'Obiwan', lastname: 'Kenobi', role: 'user' };
+    setAuthError((prev) => ({ ...prev, login: '' }));
 
-      if (data) {
-        dispatch(setUser({ ...data, isLoggedIn: true }));
-        navigate(routes.home.path, { replace: true });
+    const { data, error, headers } = await loginCall({
+      url: '/users/sign_in',
+      method: 'post',
+      params: {
+        user: getValues()
       }
-    } finally {
-      setIsLoading(false);
+    });
+
+    if (error?.status === 401) {
+      setAuthError((prev) => ({ ...prev, login: t('auth:login.invalidCredentials') }));
+    }
+
+    if (!isEmpty(data)) {
+      dispatch(setUser({ ...data, token: headers.authorization, isLoggedIn: true }));
+      navigate(routes.home.path);
     }
   };
 
   const requestNewPassword = async ({ email }) => {
-    try {
-      setIsLoading(true);
-      // TODO: Remove this and insert authentication logic here (example: send email to user)
-      await new Promise((res) => setTimeout(res, 1500));
-      setRequestPassword((prev) => ({ ...prev, success: true, email: email }));
-    } finally {
-      setIsLoading(false);
-    }
+    // TODO: Remove this and insert authentication logic here (example: send email to user)
+    await new Promise((res) => setTimeout(res, 1500));
+    setRequestPassword((prev) => ({ ...prev, success: true, email: email }));
   };
 
-  const resetPassword = async (/* data */) => {
-    try {
-      setIsLoading(true);
-      // TODO: Remove this and insert authentication logic here
-      await new Promise((res) => setTimeout(res, 1500));
-      setRequestPassword((prev) => ({ ...prev, success: true }));
-    } finally {
-      setIsLoading(false);
-    }
+  const resetPassword = async () => {
+    // TODO: Remove this and insert authentication logic here
+    await new Promise((res) => setTimeout(res, 1500));
+    setRequestPassword((prev) => ({ ...prev, success: true }));
   };
 
   const formProviderValues = useMemo(() => {
@@ -134,11 +140,14 @@ const AuthPage = ({ type }) => {
         <img src={authBackground} alt="" height="600" width="300" className="w-full h-full object-cover" />
       </div>
 
-      <FormProvider {...formProviderValues}>
-        {type === 'login' && <LoginForm />}
-        {type === 'forgotPassword' && <ForgotPasswordForm />}
-        {type === 'resetPassword' && <ResetPasswordForm />}
-      </FormProvider>
+      <div className="auth-form">
+        <FormProvider {...formProviderValues}>
+          {authError?.[type] && <Banner type="error">{authError[type]}</Banner>}
+          {type === 'login' && <LoginForm />}
+          {type === 'forgotPassword' && <ForgotPasswordForm />}
+          {type === 'resetPassword' && <ResetPasswordForm />}
+        </FormProvider>
+      </div>
     </div>
   );
 };

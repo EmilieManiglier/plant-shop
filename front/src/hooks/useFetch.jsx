@@ -16,21 +16,20 @@ export const useFetch = () => {
     };
   }, []);
 
-  const call = async (payload, config = {}) => {
+  const call = async (payload) => {
+    const { method = 'get', url, params, axiosConfig = {} } = payload || {};
+
     try {
       setLoading(true);
-      const { method, endpoint } = payload;
 
-      const { data } = (await api[method](endpoint, payload, { ...config, signal: signal() })) || {};
-
+      const { data, status, headers } = (await api[method](url, params, { ...axiosConfig, signal: signal() })) || {};
       if (!isEmpty(data)) setData(data);
-
-      return { data };
+      return { data, status, headers };
     } catch (error) {
-      setError(error);
+      setError(error.response);
+      return { error: error.response };
+    } finally {
       setLoading(false);
-
-      throw new Error(error.message);
     }
   };
   return { call, data, setData, loading, error };

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import { store } from 'store';
 import i18n from 'translations';
 
-const apiBaseUrl = process.env.REACT_APP_API_ENDPOINT;
-// TODO : remove this when Authentication is implemented and use its token instead
-const token = process.env.REACT_APP_API_TOKEN;
+const apiBaseUrl = process.env.REACT_APP_API_URL;
+const token = store.getState().user.token;
 const messages = i18n.options.resources;
 
 /**
@@ -15,10 +15,9 @@ export const apiService = {
   /* A method to construct an API object with its base url and base headers */
   setApi: () => {
     return axios.create({
-      baseURL: apiBaseUrl,
+      baseURL: `${apiBaseUrl}/api/v1`,
       headers: {
-        /* Add your necessary headers here */
-        // 'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
     });
   },
@@ -27,7 +26,7 @@ export const apiService = {
     if (!token) return;
     request.headers = {
       ...request.headers,
-      Authorization: `Bearer ${token}`
+      Authorization: token
     };
   },
   /* A method to handle request errors and call the proper error toast */

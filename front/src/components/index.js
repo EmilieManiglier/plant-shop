@@ -18,6 +18,7 @@ export { default as DatePicker } from 'components/base/form/DatePicker';
 export { default as FormToggle } from 'components/base/form/FormToggle';
 /* Dialog */
 export { default as Modal } from 'components/base/dialog/Modal';
+export { default as Banner } from 'components/base/dialog/Banner';
 /* Loading */
 export { default as InfiniteScroll } from 'components/base/loading/InfiniteScroll';
 export { default as Loader } from 'components/base/loading/Loader';

@@ -5,14 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { FormInput, Logo } from 'components';
 import { mailRegex } from 'constants';
 
-import 'assets/styles/components/_login-form.scss';
-
 const LoginForm = () => {
   const { t } = useTranslation();
   const { isValid, isLoading, onSubmit, submitClasses } = useFormContext();
 
   return (
-    <form onSubmit={onSubmit} className="login-form">
+    <form onSubmit={onSubmit}>
       <Logo className="mx-auto w-fit mb-12" />
 
       <FormInput
