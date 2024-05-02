@@ -2,11 +2,10 @@ import clsx from 'clsx';
 import { bool, node, shape, string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import ReactSelect, { components } from 'react-select';
 
 import { Icon } from 'components';
-import { routes } from 'router';
+import { useFetch } from 'hooks';
 import { resetUser } from 'store';
 
 import 'assets/styles/components/_user-dropdown.scss';
@@ -38,18 +37,16 @@ const userOptions = [{ label: 'profile' }, { label: 'favorites' }, { label: 'log
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { call: logoutCall } = useFetch();
 
   const handleAction = (option) => {
-    console.log('handle action', option);
+    // TODO : handle action for user profile
     if (option?.label === 'logout') logoutUser();
   };
 
   const logoutUser = async () => {
-    // TODO: Remove this and insert API call
-    await new Promise((res) => setTimeout(res, 500));
-    dispatch(resetUser());
-    navigate(routes.login.path, { replace: true });
+    const { status } = await logoutCall({ url: '/users/sign_out', method: 'delete' });
+    if (status === 204) dispatch(resetUser());
   };
 
   return (

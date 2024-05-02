@@ -4,6 +4,7 @@ export { default as HomePage } from 'components/pages/HomePage';
 export { default as NotFoundPage } from 'components/pages/NotFoundPage';
 export { default as AuthPage } from 'components/pages/AuthPage';
 export { default as ProductsPage } from 'components/pages/ProductsPage';
+export { default as ProductAddPage } from 'components/pages/ProductAddPage';
 /* Base */
 export { default as Icon } from 'components/base/images/Icon';
 export { default as Logo } from 'components/base/images/Logo';
@@ -37,7 +38,10 @@ export { default as ResetPasswordForm } from 'components/auth/ResetPasswordForm'
 export { default as ProductsList } from 'components/products/list/ProductsList';
 export { default as ProductItem } from 'components/products/list/ProductItem';
 export { default as ProductShowPage } from 'components/products/show/ProductShowPage';
+export { default as ProductForm } from 'components/products/edit/ProductForm';
 /* User */
 export { default as UserDropdown } from 'components/user/shared/UserDropdown';
 /* Cart */
 export { default as Cart } from 'components/cart/Cart';
+/* Context */
+export { default as ProductContextProvider, useProducts } from 'components/context/ProductContextProvider';

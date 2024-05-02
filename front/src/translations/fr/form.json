@@ -1,10 +1,12 @@
 {
+  "description": "Description",
   "email": "Email",
   "emailInvalid": "Format d'email invalide",
   "firstname": "Prénom",
   "lastname": "Nom",
   "maxLength": "Le champ {{ field }} doit faire moins de {{ length }} caractères",
   "minLength": "Le champ {{ field }} doit faire au moins {{ length }} caractères",
+  "name": "Nom",
   "password": "Mot de passe",
   "passwordConfirmation": "Répétez le mot de passe",
   "passwordConfirmationInvalid": "Les mots de passe doivent être identiques",
@@ -12,6 +14,8 @@
     "email": "Votre email",
     "password": "Votre mot de passe"
   },
+  "price": "Prix",
+  "quantity": "Quantité en stock",
   "required": "Ce champ est requis",
   "select": {
     "default": "Choisissez une option",

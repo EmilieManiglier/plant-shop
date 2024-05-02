@@ -1,6 +1,7 @@
 {
   "buttons": {
     "accept": "Accepter",
+    "add": "Ajouter",
     "addToCart": "Ajouter au panier",
     "addToFavorites": "Ajouter aux favoris",
     "buyPlants": "Acheter vos plantes",
@@ -10,7 +11,8 @@
     "deleteItem": "Supprimer ce produit du panier",
     "readMore": "En savoir plus",
     "seeCart": "Voir le panier",
-    "seePlantShow": "Voir la fiche de la plante"
+    "seePlantShow": "Voir la fiche de la plante",
+    "submit": "Valider"
   },
   "cart": {
     "empty": "Votre panier est vide",

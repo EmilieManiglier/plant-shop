@@ -1,5 +1,3 @@
-import { roles } from 'constants/roles';
-
 const routes = {
   default: {
     path: '/'
@@ -9,18 +7,22 @@ const routes = {
   },
   home: {
     path: '/accueil',
-    authorize: [roles.user]
+    private: true
   },
   login: {
     path: '/connexion'
   },
   products: {
     path: '/plantes',
-    authorize: [roles.user]
+    private: true
+  },
+  productAdd: {
+    path: '/plantes/nouveau',
+    private: true
   },
   productShow: {
     path: '/plante/:id',
-    authorize: [roles.user]
+    private: true
   },
   resetPassword: {
     path: '/nouveau-mot-de-passe'

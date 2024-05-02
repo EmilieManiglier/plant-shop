@@ -1,5 +1,5 @@
 .header {
-	@apply h-20 w-full fixed top-0 z-10 flex items-center bg-white lg:absolute lg:bg-transparent;
+	@apply h-20 w-full fixed top-0 z-20 flex items-center bg-white lg:absolute lg:bg-transparent;
 
 	nav {
 		@apply max-w-[100vw] flex justify-between items-center px-4 w-full relative h-full xl:px-8 lg:order-1;
