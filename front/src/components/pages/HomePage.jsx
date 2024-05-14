@@ -1,6 +1,7 @@
+import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
-import { Icon } from 'components';
+import { Icon, ProductsList, useProducts } from 'components';
 
 import heroBg from 'assets/img/background_2.jpg';
 import storyBg from 'assets/img/background_3.jpg';
@@ -13,6 +14,7 @@ const advantages = [
 
 const HomePage = () => {
   const { t } = useTranslation();
+  const { products } = useProducts();
 
   return (
     <>
@@ -27,6 +29,14 @@ const HomePage = () => {
           </button>
         </div>
       </section>
+
+      {!isEmpty(products) && (
+        <section className="p-4 lg:p-12">
+          <h2 className="h2 uppercase mt-2 tracking-wider">{t('products:homeTitle')}</h2>
+
+          <ProductsList page="home" />
+        </section>
+      )}
 
       <section className="flex flex-col gap-6 px-4 py-12 lg:flex-row lg:justify-between lg:px-24 lg:py-32">
         {advantages.map((advantage, i) => (

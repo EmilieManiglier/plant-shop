@@ -27,6 +27,7 @@ import {
   faUser,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/pro-regular-svg-icons';
 
 library.add(
   faAngleDown,
@@ -55,6 +56,7 @@ library.add(
   faTrashCan,
   faTruckFast,
   faUser,
-  faExternalLink
+  faExternalLink,
+  farHeart
 );
 export const faIconsList = library.definitions;

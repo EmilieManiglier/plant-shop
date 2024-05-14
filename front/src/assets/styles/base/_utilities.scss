@@ -11,6 +11,10 @@
 		filter: invert(11%) sepia(42%) saturate(1111%) hue-rotate(120deg) brightness(69%) contrast(101%);
 	}
 
+  .leaf-white {
+    filter: brightness(0) saturate(100%) invert(99%) sepia(3%) saturate(595%) hue-rotate(351deg) brightness(122%) contrast(100%);
+  }
+
   .flex-center-center {
     @apply flex items-center justify-center;
   }

@@ -2,8 +2,20 @@ import clsx from 'clsx';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { AuthPage, Footer, Header, HomePage, NotFoundPage, ProductShowPage, ProductsPage } from 'components';
+import {
+  AuthPage,
+  Footer,
+  Header,
+  HomePage,
+  NotFoundPage,
+  ProductAddPage,
+  ProductContextProvider,
+  ProductShowPage,
+  ProductsPage
+} from 'components';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
@@ -39,8 +51,10 @@ const App = () => {
             exact
             path={routes.home.path}
             element={
-              <PrivateRoute authorize={routes.home.authorize}>
-                <HomePage />
+              <PrivateRoute>
+                <ProductContextProvider>
+                  <HomePage />
+                </ProductContextProvider>
               </PrivateRoute>
             }
           />
@@ -49,8 +63,20 @@ const App = () => {
             exact
             path={routes.products.path}
             element={
-              <PrivateRoute authorize={routes.products.authorize}>
-                <ProductsPage />
+              <PrivateRoute>
+                <ProductContextProvider>
+                  <ProductsPage />
+                </ProductContextProvider>
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path={routes.productAdd.path}
+            element={
+              <PrivateRoute>
+                <ProductAddPage />
               </PrivateRoute>
             }
           />
@@ -59,7 +85,7 @@ const App = () => {
             exact
             path={routes.productShow.path}
             element={
-              <PrivateRoute authorize={routes.productShow.authorize}>
+              <PrivateRoute>
                 <ProductShowPage />
               </PrivateRoute>
             }
@@ -70,6 +96,15 @@ const App = () => {
       </main>
 
       <Footer />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+      />
     </div>
   );
 };

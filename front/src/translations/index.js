@@ -12,7 +12,8 @@ i18n
       fr: {
         common: frDic.common,
         form: frDic.form,
-        auth: frDic.auth
+        auth: frDic.auth,
+        products: frDic.products
       }
     },
     supportedLngs: ['fr'],
@@ -22,7 +23,7 @@ i18n
       escapeValue: false
     },
     defaultNS: 'common',
-    ns: ['common', 'form', 'auth'],
+    ns: ['common', 'form', 'auth', 'products'],
     detection: {
       order: ['localStorage', 'navigator', 'path', 'cookie', 'subdomain', 'queryString', 'htmlTag']
     }

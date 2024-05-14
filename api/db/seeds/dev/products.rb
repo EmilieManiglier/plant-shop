@@ -17,6 +17,15 @@ end
 
 categories_ids = Category.all.ids
 products_ids = Product.all.ids
+image_dir = Rails.root.join('db', 'seeds', 'images')
+
+# Attach images to products
+Product.all.each_with_index do |product, i|
+  # increment i by 1 to match the image file name
+  i += 1
+  image_path = image_dir.join("plant-#{i}.jpg")
+  product.image.attach(io: File.open(image_path), filename: "plant-#{i}.jpg", content_type: 'image/jpg')
+end
 
 10.times do
   ProductCategory.create!(

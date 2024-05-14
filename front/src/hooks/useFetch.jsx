@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { api } from 'api';
 import { useAbortController, useSafeState } from 'hooks';
 
-export const useFetch = () => {
+export const useFetch = (fetchOptions = {}) => {
   const [loading, setLoading] = useSafeState(false);
   const [error, setError] = useSafeState(null);
   const [data, setData] = useSafeState(null);
@@ -16,21 +16,23 @@ export const useFetch = () => {
     };
   }, []);
 
-  const call = async (payload, config = {}) => {
+  const call = async (payload) => {
+    const { method = 'get', url, params, axiosConfig = {} } = payload || {};
+    const { withSetState = true } = fetchOptions;
+
     try {
       setLoading(true);
-      const { method, endpoint } = payload;
 
-      const { data } = (await api[method](endpoint, payload, { ...config, signal: signal() })) || {};
-
-      if (!isEmpty(data)) setData(data);
-
-      return { data };
+      const { data, status, headers } = (await api[method](url, params, { ...axiosConfig, signal: signal() })) || {};
+      if (!isEmpty(data)) {
+        withSetState && setData(data);
+      }
+      return { data, status, headers };
     } catch (error) {
-      setError(error);
+      setError(error.response);
+      return { error: error.response };
+    } finally {
       setLoading(false);
-
-      throw new Error(error.message);
     }
   };
   return { call, data, setData, loading, error };

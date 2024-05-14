@@ -1,23 +1,46 @@
 import clsx from 'clsx';
-import { string } from 'prop-types';
+import { isEmpty } from 'lodash';
+import { array, number, shape, string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Tooltip } from 'react-tooltip';
 
-import { Icon } from 'components';
+import { Icon, useProducts } from 'components';
 import { formatLocalizedCurrency } from 'helpers';
+import { useFetch } from 'hooks';
 import { routes } from 'router';
 
-import plant from 'assets/img/plant-1.jpg';
+import plantIcon from 'assets/img/icons/icon-plant.png';
 import 'assets/styles/components/_product-item.scss';
 
-const ProductItem = ({ className = '' }) => {
+const ProductItem = ({ product, className = '' }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { products, setProducts } = useProducts();
+  const { call: addToFavoriteCall } = useFetch();
+  const { call: deleteFavoriteCall } = useFetch();
 
   const navigateToProductShow = () => {
-    /* TODO - add product id */
-    navigate(generatePath(routes.productShow.path, { id: 1 }));
+    navigate(generatePath(routes.productShow.path, { id: product.id }));
+  };
+
+  const handleFavorite = async () => {
+    const favoritePresent = product.favoriteId;
+    const call = favoritePresent ? deleteFavoriteCall : addToFavoriteCall;
+
+    await call({
+      url: favoritePresent ? `/favorites/${product.favoriteId}` : '/favorites',
+      method: favoritePresent ? 'delete' : 'post',
+      ...(!favoritePresent && { params: { productId: product.id } })
+    });
+
+    const updatedProducts = products.map((prod) => {
+      return prod.id === product.id ? { ...prod, favoriteId: favoritePresent ? null : product.id } : prod;
+    });
+    setProducts(updatedProducts);
+
+    toast.success(t(`products:favorites.${favoritePresent ? 'deleteSuccess' : 'success'}`));
   };
 
   return (
@@ -31,32 +54,58 @@ const ProductItem = ({ className = '' }) => {
         className="product-favorite-btn"
         data-tooltip-id="favorite-btn-tooltip"
         data-tooltip-content={t('buttons.addToFavorites')}
+        onClick={handleFavorite}
       >
-        <Icon name="heart" className="text-gray-600" />
+        <Icon name="heart" iconStyle={product.favoriteId ? 'fas' : 'far'} className="text-gray-600" />
         <span className="sr-only">{t('buttons.addToFavorites')}</span>
       </button>
 
       <Tooltip id="favorite-btn-tooltip" />
 
-      <div className="h-44 lg:h-80">
-        <img src={plant} alt="" className="img-cover" />
+      <div className="h-44 lg:h-80 shrink-0 overflow-hidden rounded-t-lg">
+        {product.image ? (
+          <img src={product.image} alt="" className="img-cover" />
+        ) : (
+          <div className="bg-green-500 w-full h-full flex-center-center">
+            <img src={plantIcon} alt="" className="w-12 h-12 leaf-white" />
+          </div>
+        )}
       </div>
 
-      <div className="p-6">
-        <p className="font-bold text-lg">Leaf plant name</p>
-        <p className="text-sm text-gray-500 mb-4">Plant category</p>
-        <p className="mb-4 text-lg">{formatLocalizedCurrency(55.99)}</p>
+      <div className="p-6 h-full flex flex-col justify-between gap-y-12">
+        <div>
+          <p className="font-bold text-lg mb-2">{product.name}</p>
+          {!isEmpty(product?.categories) && (
+            <div className="flex flex-wrap gap-2">
+              {product.categories.map((category, index) => (
+                <p key={`product-category-${index}`} className="badge">
+                  {category.name}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
+        <p className="text-lg">{formatLocalizedCurrency(product.price)}</p>
 
-        <button type="button" className="btn cart-btn mx-auto">
+        {/* TODO : Add button for cart when API is ready */}
+        {/* <button type="button" className="btn cart-btn mx-auto">
           <Icon name="cart-arrow-down" className="cart-btn-icon" />
           <span className="cart-btn-content text-gray-700">{t('buttons.addToCart')}</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );
 };
 
 ProductItem.propTypes = {
+  product: shape({
+    name: string,
+    description: string,
+    price: string,
+    stock: number,
+    image: string,
+    categories: array
+  }).isRequired,
   className: string
 };
 

@@ -6,9 +6,8 @@ export const apiConfig = apiService.setApi();
 
 /* Add an interceptor to convert request to snake_case */
 apiConfig.interceptors.request.use((request) => {
-  // TODO : Add token to request here if needed
-  // apiService.addToken(request);
   request.data = deepCaseConverter(request.data, false);
+  apiService.addToken(request);
   return request;
 });
 

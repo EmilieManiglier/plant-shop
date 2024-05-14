@@ -9,7 +9,7 @@ import { faIconsList } from 'services/fontAwesomeLibrary';
 /* Custom icons */
 import * as customIcons from 'assets/img/icons';
 
-const Icon = ({ name, className = '', libraryIconProps = null }) => {
+const Icon = ({ name, iconStyle = 'fas', className = '', libraryIconProps = null }) => {
   const isLibraryIcon = useMemo(() => {
     const flattenFaIconsList = flatten(keys(faIconsList).map((k) => keys(faIconsList[k])));
     return flattenFaIconsList.includes(name[1]) || flattenFaIconsList.includes(name);
@@ -19,8 +19,8 @@ const Icon = ({ name, className = '', libraryIconProps = null }) => {
     if (isLibraryIcon) {
       return (
         <FontAwesomeIcon
-          className={`fa fa-icon ${className}`}
-          icon={name}
+          className={`fa-icon ${className}`}
+          icon={[iconStyle, name]}
           aria-hidden="true"
           focusable="false"
           {...(libraryIconProps && libraryIconProps)}
@@ -46,13 +46,14 @@ const Icon = ({ name, className = '', libraryIconProps = null }) => {
         </span>
       );
     }
-  }, [name]);
+  }, [name, iconStyle]);
 
   return renderIcon;
 };
 
 Icon.propTypes = {
   name: oneOfType([string, array]).isRequired,
+  iconStyle: string,
   className: string,
   libraryIconProps: object /* See FontAwesomeIcon component props or current icon library component */
 };

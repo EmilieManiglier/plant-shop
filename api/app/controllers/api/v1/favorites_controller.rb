@@ -14,7 +14,7 @@ module Api
         favorite = current_user.favorites.build(favorite_params)
 
         if favorite.save
-          render json: FavoriteSerializer.render(favorite)
+          render json: FavoriteSerializer.render(favorite, scope: { current_user: current_user }), status: :created
         else
           render json: favorite.errors, status: :unprocessable_entity
         end
