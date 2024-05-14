@@ -94,6 +94,11 @@ GEM
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faker (3.2.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
@@ -286,6 +291,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  factory_bot_rails
   faker
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
@@ -306,7 +312,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.4p223
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.4

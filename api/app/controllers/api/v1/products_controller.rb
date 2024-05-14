@@ -26,6 +26,21 @@ module Api
         end
       end
 
+      def update
+        product = Product.find(params[:id])
+
+        if product.update(permitted_params)
+          render json: ProductSerializer.render(product, scope: { current_user: current_user })
+        else
+          render json: product.errors, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        product = Product.find(params[:id])
+        render status: :no_content if product.destroy
+      end
+
       private
 
       def permitted_params
