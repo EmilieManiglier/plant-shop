@@ -18,7 +18,7 @@ paths:
       - Products
       parameters: []
       responses:
-        '201':
+        '200':
           description: successful
       requestBody:
         content:
@@ -62,24 +62,98 @@ paths:
       responses:
         '200':
           description: successful
+  "/api/v1/users/account_update":
+    put:
+      summary: update user informations
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: update successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    current_password:
+                      type: string
+                    firstname:
+                      type: string
+                    lastname:
+                      type: string
+                    phone_number:
+                      type: string
+  "/api/v1/users/sign_in":
+    post:
+      summary: log in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/api/v1/users/sign_out":
+    delete:
+      summary: log out
+      tags:
+      - Users
+      responses:
+        '204':
+          description: no content
 servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
+security:
+- Bearer: []
 components:
   schemas:
     product:
       type: object
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        price:
-          type: number
-        stock:
-          type: integer
+        product:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            price:
+              type: number
+            stock:
+              type: integer
       required:
       - name
       - price
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: The Bearer token for API auth
