@@ -4,17 +4,15 @@ module Api
   module V1
     # FavoritesController
     class FavoritesController < ApplicationController
-      before_action :authenticate_user!
-
       def index
         render json: FavoriteSerializer.render(current_user.favorites)
       end
 
       def create
-        favorite = current_user.favorites.build(favorite_params)
+        favorite = Favorite.new(favorite_params.merge(user_id: current_user.id))
 
         if favorite.save
-          render json: FavoriteSerializer.render(favorite, scope: { current_user: current_user }), status: :created
+          render json: FavoriteSerializer.render(favorite), status: :created
         else
           render json: favorite.errors, status: :unprocessable_entity
         end
@@ -22,7 +20,7 @@ module Api
 
       def destroy
         favorite = current_user.favorites.find(params[:id])
-        render json: nil, status: :no_content if favorite.destroy
+        render status: :no_content if favorite.destroy
       end
 
       private

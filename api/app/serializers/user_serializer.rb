@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# UserSerializer
 class UserSerializer < ApplicationSerializer
   identifier :id
 

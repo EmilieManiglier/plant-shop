@@ -4,6 +4,46 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/favorites":
+    get:
+      summary: list favorites
+      tags:
+      - Favorites
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create favorite
+      tags:
+      - Favorites
+      parameters: []
+      responses:
+        '201':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+        required: true
+  "/api/v1/favorites/{id}":
+    delete:
+      summary: delete favorite
+      tags:
+      - Favorites
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: no content
   "/api/v1/products":
     get:
       summary: list products
@@ -60,26 +100,102 @@ paths:
       tags:
       - Products
       responses:
+        '204':
+          description: no content
+  "/api/v1/users/account_update":
+    put:
+      summary: update user informations
+      tags:
+      - Users
+      parameters: []
+      responses:
         '200':
+          description: update successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/user"
+  "/api/v1/users/sign_in":
+    post:
+      summary: log in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/api/v1/users/sign_out":
+    delete:
+      summary: log out
+      tags:
+      - Users
+      responses:
+        '204':
+          description: no content
 servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
+security:
+- Bearer: []
 components:
   schemas:
     product:
       type: object
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        price:
-          type: number
-        stock:
-          type: integer
+        product:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            price:
+              type: number
+            stock:
+              type: integer
       required:
       - name
       - price
+    user:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            password:
+              type: string
+            password_confirmation:
+              type: string
+            current_password:
+              type: string
+            firstname:
+              type: string
+            lastname:
+              type: string
+            phone_number:
+              type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: The Bearer token for API auth
