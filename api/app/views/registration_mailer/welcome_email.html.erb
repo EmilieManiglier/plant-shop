@@ -1,0 +1,10 @@
+<div style="text-align: center; font-family: Helvetica;">
+	<h1>Bienvenue sur Leaf Place 🪴</h1>
+
+	<p style="margin: 32px 0;">Bonjour, <%= "#{@user.firstname} #{@user.lastname}" %></p>
+	<p style="margin-bottom: 72px;">Bienvenue sur le site des amoureux des plantes</p>
+
+	<p style="margin-bottom: 16px;">Trouvez la plante de vos rêves ou vendez vos boutures et plantes en trop !</p>
+	<p style="margin-bottom: 72px;">Pour vous connecter, cliquez sur le lien suivant</p>
+	<%= link_to 'Se connecter', @url, { :style => 'color: #fff; background-color: #019875; padding: 16px; text-decoration: none;' } %>
+</div>
