@@ -4,6 +4,46 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/favorites":
+    get:
+      summary: list favorites
+      tags:
+      - Favorites
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create favorite
+      tags:
+      - Favorites
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+        required: true
+  "/api/v1/favorites/{id}":
+    delete:
+      summary: delete favorite
+      tags:
+      - Favorites
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
   "/api/v1/products":
     get:
       summary: list products

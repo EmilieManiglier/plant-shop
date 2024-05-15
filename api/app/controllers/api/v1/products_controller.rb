@@ -4,23 +4,20 @@ module Api
   module V1
     # ProductsController
     class ProductsController < ApplicationController
-      before_action :authenticate_user!
-
-      # TODO : Refacto current_user scope for each method
       def index
-        render json: ProductSerializer.render(Product.all, scope: { current_user: current_user })
+        render json: json_response(Product.all, 'index')
       end
 
       def show
         product = Product.find(params[:id])
-        render json: ProductSerializer.render(product, scope: { current_user: current_user })
+        render json: json_response(product)
       end
 
       def create
         product = Product.new(permitted_params)
 
         if product.save
-          render json: ProductSerializer.render(product, scope: { current_user: current_user }), status: :created
+          render json: json_response(product), status: :created
         else
           render json: product.errors, status: :unprocessable_entity
         end
@@ -30,7 +27,7 @@ module Api
         product = Product.find(params[:id])
 
         if product.update(permitted_params)
-          render json: ProductSerializer.render(product, scope: { current_user: current_user })
+          render json: json_response(product)
         else
           render json: product.errors, status: :unprocessable_entity
         end
@@ -45,6 +42,10 @@ module Api
 
       def permitted_params
         params.require(:product).permit(:name, :description, :price, :stock, :image)
+      end
+
+      def json_response(record, view = 'base_view')
+        ProductSerializer.render(record, current_user:, view: view.to_sym)
       end
     end
   end
