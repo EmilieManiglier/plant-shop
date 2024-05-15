@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   it 'is not valid without email and password' do
-    user = User.new(email: '', password: '')
-    expect(user).to_not be_valid
+    user = described_class.new(email: '', password: '')
+    expect(user).not_to be_valid
   end
 
   it 'is valid with email and password' do
-    user = User.new(email: 'test@test.fr', password: 'password')
+    user = described_class.new(email: 'test@test.fr', password: 'password')
     expect(user).to be_valid
   end
 
   it 'validates the uniqueness of email' do
-    user = User.new(email: 'user-1@test.fr', password: 'password').save
-    user2 = User.new(email: 'user-1@test.fr', password: 'password')
-    expect(user2).to be_invalid
+    described_class.new(email: 'user-1@test.fr', password: 'password').save
+    user2 = described_class.new(email: 'user-1@test.fr', password: 'password')
+    expect(user2).not_to be_valid
   end
 end

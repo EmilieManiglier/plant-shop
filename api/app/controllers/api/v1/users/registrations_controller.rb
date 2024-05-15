@@ -29,21 +29,21 @@ module Api
         private
 
         def sign_up_attributes
-          %i[
-            email
-            firstname
-            lastname
-            phone_number
+          [
+            :email,
+            :firstname,
+            :lastname,
+            :phone_number
           ]
         end
 
         def account_update_attributes
-          %i[
-            firstname
-            lastname
-            phone_number
-            password
-            password_confirmation
+          [
+            :firstname,
+            :lastname,
+            :phone_number,
+            :password,
+            :password_confirmation
           ]
         end
       end

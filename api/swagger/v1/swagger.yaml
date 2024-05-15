@@ -18,7 +18,7 @@ paths:
       - Favorites
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -42,8 +42,8 @@ paths:
         schema:
           type: string
       responses:
-        '200':
-          description: successful
+        '204':
+          description: no content
   "/api/v1/products":
     get:
       summary: list products
@@ -58,7 +58,7 @@ paths:
       - Products
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -100,8 +100,8 @@ paths:
       tags:
       - Products
       responses:
-        '200':
-          description: successful
+        '204':
+          description: no content
   "/api/v1/users/account_update":
     put:
       summary: update user informations
@@ -115,23 +115,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                user:
-                  type: object
-                  properties:
-                    password:
-                      type: string
-                    password_confirmation:
-                      type: string
-                    current_password:
-                      type: string
-                    firstname:
-                      type: string
-                    lastname:
-                      type: string
-                    phone_number:
-                      type: string
+              "$ref": "#/components/schemas/user"
   "/api/v1/users/sign_in":
     post:
       summary: log in
@@ -191,6 +175,24 @@ components:
       required:
       - name
       - price
+    user:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            password:
+              type: string
+            password_confirmation:
+              type: string
+            current_password:
+              type: string
+            firstname:
+              type: string
+            lastname:
+              type: string
+            phone_number:
+              type: string
   securitySchemes:
     Bearer:
       type: apiKey

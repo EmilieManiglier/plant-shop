@@ -4,7 +4,6 @@
 module JsonErrors
   extend ActiveSupport::Concern
 
-  # rubocop:disable Metrics/BlockLength
   included do
     rescue_from ActionController::InvalidAuthenticityToken, with: :render500
     rescue_from ActionController::ParameterMissing, with: :render400
@@ -39,5 +38,4 @@ module JsonErrors
       render json: data, status:
     end
   end
-  # rubocop:enable Metrics/BlockLength
 end

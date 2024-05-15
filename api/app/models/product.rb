@@ -8,5 +8,5 @@ class Product < ApplicationRecord
 
   has_one_attached :image
 
-  validates :image, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..2.megabytes }
+  validates :image, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(2.megabytes) }
 end

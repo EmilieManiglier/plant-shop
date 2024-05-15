@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-products_ids = Product.all.ids
+products_ids = Product.ids
 
 def check_favorite(user, product)
   Favorite.exists?(user_id: user, product_id: product)

@@ -48,7 +48,23 @@ RSpec.configure do |config|
                 }
               }
             },
-            required: %w[name price]
+            required: ['name', 'price']
+          },
+          user: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                properties: {
+                  password: { type: :string },
+                  password_confirmation: { type: :string },
+                  current_password: { type: :string },
+                  firstname: { type: :string },
+                  lastname: { type: :string },
+                  phone_number: { type: :string }
+                }
+              }
+            }
           }
         },
         securitySchemes: {
@@ -57,7 +73,7 @@ RSpec.configure do |config|
             name: 'Authorization',
             in: :header,
             description: 'The Bearer token for API auth'
-           }
+          }
         }
       }
     }

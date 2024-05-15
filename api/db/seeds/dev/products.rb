@@ -15,9 +15,9 @@ end
   )
 end
 
-categories_ids = Category.all.ids
-products_ids = Product.all.ids
-image_dir = Rails.root.join('db', 'seeds', 'images')
+categories_ids = Category.ids
+products_ids = Product.ids
+image_dir = Rails.root.join('db/seeds/images')
 
 # Attach images to products
 Product.all.each_with_index do |product, i|

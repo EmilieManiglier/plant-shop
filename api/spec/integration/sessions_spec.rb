@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'swagger_helper'
 
-describe 'api/v1/users/sessions', type: :request do
+describe 'API Users', type: :request do
   path '/api/v1/users/sign_in' do
     let(:existing_user) { create(:user) }
 
@@ -37,7 +37,6 @@ describe 'api/v1/users/sessions', type: :request do
 
     delete 'log out' do
       tags 'Users'
-      consumes 'application/json'
 
       response(204, 'no content') do
         run_test!
