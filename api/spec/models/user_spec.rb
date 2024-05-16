@@ -18,4 +18,15 @@ RSpec.describe User do
     user2 = described_class.new(email: 'user-1@test.fr', password: 'password')
     expect(user2).not_to be_valid
   end
+
+  it 'sends an email after sign up' do
+    user = described_class.new(
+      email: 'new-user-1@test.fr',
+      password: 'password',
+      firstname: 'John',
+      lastname: 'Doe'
+    )
+
+    expect { user.save }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
