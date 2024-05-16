@@ -1,0 +1,11 @@
+<div style="text-align: center; font-family: Helvetica;">
+	<h1><%= t('mailer.welcome_email.title') %> 🪴</h1>
+
+	<p style="margin: 32px 0;">
+		<%= t('mailer.welcome_email.hello', fullname: "#{@user.firstname} #{@user.lastname}" ) %></p>
+	<p style="margin-bottom: 72px;"><%= t('mailer.welcome_email.intro') %></p>
+
+	<p style="margin-bottom: 16px;"><%= t('mailer.welcome_email.text1') %></p>
+	<p style="margin-bottom: 72px;"><%= t('mailer.welcome_email.text2') %></p>
+	<%= link_to t('mailer.welcome_email.login'), @url, { :style => 'color: #fff; background-color: #019875; padding: 16px; text-decoration: none;' } %>
+</div>

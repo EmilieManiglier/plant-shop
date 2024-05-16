@@ -3,9 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Product do
-  it 'is valid with name, price, category_id' do
-    category = Category.create(name: 'Category 1')
-    product = described_class.new(name: 'Product 1', price: 100, category_id: category.id)
+  it 'is valid with name and price' do
+    product = described_class.new(name: 'Product 1', price: 100)
     expect(product).to be_valid
   end
 end

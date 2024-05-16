@@ -6,7 +6,7 @@ info:
 paths:
   "/api/v1/favorites":
     get:
-      summary: list favorites
+      summary: user favorites list
       tags:
       - Favorites
       responses:
@@ -116,6 +116,20 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/user"
+  "/api/v1/users/sign_up":
+    post:
+      summary: register new account
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/new_user"
   "/api/v1/users/sign_in":
     post:
       summary: log in
@@ -123,7 +137,7 @@ paths:
       - Users
       parameters: []
       responses:
-        '201':
+        '200':
           description: successful
       requestBody:
         content:
@@ -193,6 +207,27 @@ components:
               type: string
             phone_number:
               type: string
+      required:
+      - current_password
+    new_user:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            password:
+              type: string
+            email:
+              type: string
+            firstname:
+              type: string
+            lastname:
+              type: string
+            phone_number:
+              type: string
+      required:
+      - email
+      - password
   securitySchemes:
     Bearer:
       type: apiKey

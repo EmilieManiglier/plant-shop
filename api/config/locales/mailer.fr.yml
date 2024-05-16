@@ -1,0 +1,9 @@
+fr:
+  mailer:
+    welcome_email:
+      title: Bienvenue sur Leaf Place
+      hello: Bonjour %{fullname}
+      intro: Bienvenue sur le site des amoureux des plantes
+      text1: Trouve la plante de tes rêves ou vends tes boutures et plantes en trop !
+      text2: Pour te connecter, clique sur le lien suivant
+      login: Se connecter

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount Rswag::Api::Engine => '/api-docs'
     mount Rswag::Ui::Engine => '/api-docs'
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

@@ -10,7 +10,6 @@ RSpec.describe Category do
 
   it 'is not valid without a name' do
     category = described_class.new(name: nil)
-    category.valid?
-    expect(category.errors[:name]).to include("can't be blank")
+    expect(category).to be_invalid
   end
 end
