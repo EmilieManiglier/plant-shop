@@ -28,4 +28,27 @@ describe 'API Users', type: :request do
       end
     end
   end
+
+  path '/api/v1/users/sign_up' do
+    post 'register new account' do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :user, in: :body, schema: { '$ref' => '#/components/schemas/new_user' }
+
+      response(201, 'created') do
+        let(:user) do
+          {
+            user: {
+              firstname: 'John',
+              lastname: 'Doe',
+              email: 'new-user-1@test.fr',
+              phone_number: '0614132768',
+              password: 'password'
+            }
+          }
+        end
+        run_test!
+      end
+    end
+  end
 end

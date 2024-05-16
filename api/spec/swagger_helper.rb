@@ -63,8 +63,25 @@ RSpec.configure do |config|
                   lastname: { type: :string },
                   phone_number: { type: :string }
                 }
-              }
-            }
+              },
+            },
+            required: ['current_password']
+          },
+          new_user: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                properties: {
+                  password: { type: :string },
+                  email: { type: :string },
+                  firstname: { type: :string },
+                  lastname: { type: :string },
+                  phone_number: { type: :string }
+                }
+              },
+            },
+            required: ['email', 'password']
           }
         },
         securitySchemes: {

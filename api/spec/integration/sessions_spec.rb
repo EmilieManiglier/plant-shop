@@ -24,7 +24,7 @@ describe 'API Users', type: :request do
         }
       }
 
-      response(201, 'successful') do
+      response(200, 'successful') do
         let(:user) { { user: { email: existing_user.email, password: existing_user.password } } }
         run_test!
       end
