@@ -9,14 +9,6 @@ module Api
 
         before_action :configure_permitted_parameters if :devise_controller?
 
-        def create
-          super
-
-          if @user.persisted?
-            RegistrationMailer.welcome_email(@user).deliver_now
-          end
-        end
-
         def update
           super do |resource|
             return render422(resource.errors) if resource.errors.present?

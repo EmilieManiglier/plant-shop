@@ -6,6 +6,6 @@ class RegistrationMailer < ApplicationMailer
 	def welcome_email(user)
 		@user = user
 		@url = 'http://localhost:5100/connexion'
-		mail(to: @user.email, subject: 'Welcome to Leaf Place')
+		mail(to: @user.email, subject: t('mailer.welcome_email.title'))
 	end
 end
