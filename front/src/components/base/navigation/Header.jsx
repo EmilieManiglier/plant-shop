@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { Icon, Logo, UserDropdown } from 'components';
-import { useSafeState } from 'hooks';
+import { useCurrentUser, useSafeState } from 'hooks';
 import { routes } from 'router';
 
 import 'assets/styles/components/_header.scss';
@@ -13,7 +12,7 @@ const links = ['home', 'products'];
 
 const Header = () => {
   const { t } = useTranslation();
-  const user = useSelector((state) => state.user);
+  const { isLoggedIn, logoutUser, logoutLoading } = useCurrentUser();
   const [menuOpen, setMenuOpen] = useSafeState(false);
   // const [showCart, setShowCart] = useSafeState(false);
 
@@ -36,7 +35,7 @@ const Header = () => {
           </button>
 
           <ul className={clsx('menu', menuOpen && 'open')}>
-            {!user?.token && (
+            {!isLoggedIn && (
               <li>
                 <NavLink className="navbar-item" to={routes.login.path}>
                   {t('auth:login.button')}
@@ -44,7 +43,7 @@ const Header = () => {
               </li>
             )}
 
-            {user?.token && (
+            {isLoggedIn && (
               <>
                 {links.map((link, i) => (
                   <li key={`header-link-${i}`} className="mb-12 text-center lg:mb-0">
@@ -75,10 +74,15 @@ const Header = () => {
                 </li>
 
                 <li className="text-center lg:hidden">
-                  <NavLink className="navlink text-xl flex-center-center gap-4">
+                  <button
+                    type="button"
+                    className="navlink text-xl flex-center-center gap-4"
+                    onClick={logoutUser}
+                    disabled={logoutLoading}
+                  >
                     <Icon name="right-from-bracket" className="hidden sm:block" />
                     {t('navigation.logout')}
-                  </NavLink>
+                  </button>
                 </li>
               </>
             )}

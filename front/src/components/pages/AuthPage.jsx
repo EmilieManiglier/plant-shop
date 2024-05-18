@@ -74,6 +74,8 @@ const AuthPage = ({ type }) => {
   };
 
   const logUser = async () => {
+    if (!isValid) trigger();
+
     setAuthError((prev) => ({ ...prev, login: '' }));
 
     const { data, error, headers } = await loginCall({
@@ -95,6 +97,8 @@ const AuthPage = ({ type }) => {
   };
 
   const signUpUser = async () => {
+    if (!isValid) trigger();
+
     const { data } = await signUpCall({
       url: '/users/sign_up',
       method: 'post',

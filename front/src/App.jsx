@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,10 +15,11 @@ import {
   ProductShowPage,
   ProductsPage
 } from 'components';
+import { useCurrentUser } from 'hooks';
 import { PrivateRoute, routes } from 'router';
 
 const App = () => {
-  const user = useSelector((state) => state.user);
+  const { isLoggedIn } = useCurrentUser();
   const location = useLocation();
 
   const containerClass = useMemo(() => location.pathname.split('/')?.[1] ?? '', [location.pathname]);
@@ -33,17 +33,17 @@ const App = () => {
 
   return (
     <div className={clsx('app', containerClass)}>
-      {user.isLoggedIn && <Header />}
+      {isLoggedIn && <Header />}
 
       <main className="main">
         <Routes>
           <Route
             index
             path={routes.default.path}
-            element={user.isLoggedIn ? <Navigate to={routes.home.path} /> : <Navigate to={routes.login.path} />}
+            element={isLoggedIn ? <Navigate to={routes.home.path} /> : <Navigate to={routes.login.path} />}
           />
 
-          {!user.isLoggedIn &&
+          {!isLoggedIn &&
             authRoutes.map((route, index) => (
               <Route key={`route-${route.path}-${index}`} path={route.path} element={<AuthPage type={route.type} />} />
             ))}

@@ -9,7 +9,7 @@ import { routes } from 'router';
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const { isValid, isLoading, onSubmit, submitClasses } = useFormContext();
+  const { isLoading, onSubmit, submitClasses } = useFormContext();
 
   return (
     <>
@@ -43,7 +43,7 @@ const LoginForm = () => {
           icon="lock"
         />
 
-        <button type="submit" disabled={!isValid || isLoading} className={clsx(submitClasses)}>
+        <button type="submit" disabled={isLoading} className={clsx(submitClasses)}>
           {t('form:submit')}
         </button>
       </form>

@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { Icon } from 'components';
+import { useCurrentUser } from 'hooks';
 
 import { background2, background3, background4, background5 } from 'assets/img';
 
@@ -15,14 +15,14 @@ const advantages = [
 const images = [background2, background3, background4, background5];
 
 const Footer = () => {
-  const user = useSelector((state) => state.user);
+  const { isLoggedIn } = useCurrentUser();
   const { t } = useTranslation();
   const year = new Date().getFullYear();
 
   return (
     <>
       <section className="bg-beige-100">
-        {user.isLoggedIn && (
+        {isLoggedIn && (
           <>
             <div className="lg:grid lg:grid-cols-3 lg:border-b lg:border-gray-300">
               {advantages.map((advantage, i) => (
@@ -47,9 +47,7 @@ const Footer = () => {
           </>
         )}
 
-        <div
-          className={clsx('grid grid-cols-2 gap-6 main-container md:grid-cols-12 md:py-8', !user.isLoggedIn && 'py-8')}
-        >
+        <div className={clsx('grid grid-cols-2 gap-6 main-container md:grid-cols-12 md:py-8', !isLoggedIn && 'py-8')}>
           <div className="col-span-2 md:col-span-6">
             <h2 className="text-2xl font-title">{t('aboutShort')}</h2>
             <p className="my-6 lg:max-w-[75%]">
