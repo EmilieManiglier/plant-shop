@@ -10,19 +10,15 @@ const ProductsList = ({ page }) => {
   const productsList = useMemo(() => {
     if (isEmpty(products)) return [];
     else if (page !== 'home') return products;
-    return products?.length > 5 ? products?.slice(0, 5) : products;
+    return products?.length > 3 ? products?.slice(0, 3) : products;
   }, [products]);
 
   return (
-    <section className="grid grid-cols-12 gap-6 p-4 lg:px-12">
+    <div className="grid grid-cols-12 gap-6">
       {productsList?.map((product, index) => (
-        <ProductItem
-          key={`product-${index}`}
-          product={product}
-          className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3"
-        />
+        <ProductItem key={`product-${index}`} product={product} className="col-span-12 sm:col-span-6 lg:col-span-4" />
       ))}
-    </section>
+    </div>
   );
 };
 

@@ -5,10 +5,11 @@
 /* Basics */
 @import 'assets/styles/base/typography';
 @import 'assets/styles/base/utilities';
+@import 'assets/styles/base/transitions';
 @import 'assets/styles/base/buttons';
 @import 'assets/styles/base/form';
 @import 'assets/styles/components/badges';
 
 html {
-	@apply font-roboto;
+	@apply font-text text-gray-900 scroll-smooth;
 }

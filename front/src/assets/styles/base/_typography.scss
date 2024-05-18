@@ -1,13 +1,42 @@
+@mixin font($family, $url, $weight, $style, $font-display: auto) {
+  @font-face {
+    font-family: $family;
+    src:
+      url($url + '.woff2') format('woff2'),
+      url($url + '.woff') format('woff');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: $font-display;
+  }
+}
+
+@include font('Ultra', '/assets/fonts/ultra/ultra', 500, normal);
+@include font('ClashGrotesk', '/assets/fonts/clash-grotesk/clash-grotesk-regular', 400, normal);
+@include font('ClashGrotesk', '/assets/fonts/clash-grotesk/clash-grotesk-semibold', 500, normal);
+@include font('ClashGrotesk', '/assets/fonts/clash-grotesk/clash-grotesk-bold', 700, normal);
+@include font('Avenir', '/assets/fonts/avenir/avenir', 500, normal);
+@include font('Avenir', '/assets/fonts/avenir/avenir-bold', 700, normal);
+
 @layer base {
 	.h1 {
-    @apply font-rubik font-bold text-3xl md:text-4xl md:leading-[3.5rem];
+    @apply font-title text-[3rem] leading-[1.1] md:text-[4rem];
   }
 
   .h2 {
-    @apply font-rubik font-bold text-lg lg:text-xl;
+    @apply font-title leading-[1.2] text-[2.3rem] lg:text-[2.9rem];
   }
 
   .h3 {
-    @apply font-rubik font-bold text-lg;
+    @apply font-title leading-[1.2] text-xl lg:text-2xl;
+  }
+
+  .h1.underlined,
+  .h2.underlined,
+  .h3.underlined {
+    @apply relative pb-3;
+
+    &::after {
+      @apply content-empty absolute w-full h-[0.19rem] left-0 bottom-0 bg-gray-900;
+    }
   }
 }

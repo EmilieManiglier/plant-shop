@@ -1,8 +1,10 @@
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { Logo, UserDropdown } from 'components';
+import { Icon, Logo, UserDropdown } from 'components';
+import { useSafeState } from 'hooks';
 import { routes } from 'router';
 
 import 'assets/styles/components/_header.scss';
@@ -12,17 +14,28 @@ const links = ['home', 'products'];
 const Header = () => {
   const { t } = useTranslation();
   const user = useSelector((state) => state.user);
+  const [menuOpen, setMenuOpen] = useSafeState(false);
   // const [showCart, setShowCart] = useSafeState(false);
 
   return (
     <>
       <header className="header">
-        <nav className="flex gap-4 justify-between items-center p-4">
+        <nav className="flex gap-4 justify-between items-center">
           <NavLink to={routes.home.path}>
-            <Logo color="white" />
+            <Logo />
           </NavLink>
 
-          <ul className="flex items-center gap-x-8">
+          <button
+            type="button"
+            className={clsx('btn-mobile-menu', menuOpen && 'open')}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+
+          <ul className={clsx('menu', menuOpen && 'open')}>
             {!user?.token && (
               <li>
                 <NavLink className="navbar-item" to={routes.login.path}>
@@ -34,11 +47,8 @@ const Header = () => {
             {user?.token && (
               <>
                 {links.map((link, i) => (
-                  <li key={`header-link-${i}`}>
-                    <NavLink
-                      className={({ isActive }) => `navbar-item ${isActive ? 'active' : ''}`}
-                      to={routes[link].path}
-                    >
+                  <li key={`header-link-${i}`} className="mb-12 text-center lg:mb-0">
+                    <NavLink className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`} to={routes[link].path}>
                       {t(`navigation.${link}`)}
                     </NavLink>
                   </li>
@@ -52,8 +62,23 @@ const Header = () => {
                   </button>
                 </li> */}
 
-                <li>
+                <li className="hidden lg:block">
                   <UserDropdown />
+                </li>
+
+                <li className="text-center mb-12 lg:hidden">
+                  <NavLink className="navlink">{t('navigation.profile')}</NavLink>
+                </li>
+
+                <li className="text-center mb-24 lg:hidden">
+                  <NavLink className="navlink">{t('navigation.favorites')}</NavLink>
+                </li>
+
+                <li className="text-center lg:hidden">
+                  <NavLink className="font-title text-xl flex-center-center gap-4">
+                    <Icon name="right-from-bracket" />
+                    {t('navigation.logout')}
+                  </NavLink>
                 </li>
               </>
             )}

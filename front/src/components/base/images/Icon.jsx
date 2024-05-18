@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import { flatten, keys } from 'lodash';
 import { array, object, oneOfType, string } from 'prop-types';
 import { useMemo } from 'react';
@@ -19,7 +20,7 @@ const Icon = ({ name, iconStyle = 'fas', className = '', libraryIconProps = null
     if (isLibraryIcon) {
       return (
         <FontAwesomeIcon
-          className={`fa-icon ${className}`}
+          className={clsx(className, 'library-icon')}
           icon={[iconStyle, name]}
           aria-hidden="true"
           focusable="false"

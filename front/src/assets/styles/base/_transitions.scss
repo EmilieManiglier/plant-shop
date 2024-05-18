@@ -1,0 +1,22 @@
+@keyframes fade-slide {
+  from {
+    opacity: 0;
+		transform: translateY(1rem);
+  }
+  to {
+    opacity: 100;
+		transform: translateY(0);
+  }
+}
+
+@layer base {
+	.transition-img {
+		img {
+			@apply transition-transform duration-500 ease-in-out;
+		}
+
+		&:hover img {
+			@apply scale-125;
+		}
+	}
+}

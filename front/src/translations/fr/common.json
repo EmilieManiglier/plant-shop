@@ -1,4 +1,6 @@
 {
+  "about": "À propos de Leaf Place",
+  "aboutShort": "À propos",
   "buttons": {
     "accept": "Accepter",
     "add": "Ajouter",
@@ -11,6 +13,7 @@
     "deleteItem": "Supprimer ce produit du panier",
     "readMore": "En savoir plus",
     "seeCart": "Voir le panier",
+    "seeDetails": "Voir le détail",
     "seePlantShow": "Voir la fiche de la plante",
     "submit": "Valider"
   },
@@ -34,11 +37,11 @@
         "title": "Qualité"
       }
     },
-    "subtitle": "Pour les amoureux des plantes",
-    "title": "Faites entrer le printemps dans votre maison"
-  },
-  "infiniteScroll": {
-    "end": "Vous avez tout vu !"
+    "contactUs": "Nous contacter",
+    "followUs": "Nous suivre",
+    "heroCta": "Acheter des plantes",
+    "subtitle": "Faites entrer le printemps dans votre maison",
+    "title": "Pour les amoureux des plantes"
   },
   "meta": {
     "description": "Leaf Place est une plateforme d'achat et de vente de plantes entre particuliers. Trouvez la plante de vos rêves ou vendez vos boutures et plantes en trop !",
@@ -48,10 +51,10 @@
   },
   "navigation": {
     "copyright": "© {{ year }} Leaf Place. Développé par Émilie Maniglier",
-    "home": "Accueil",
     "favorites": "Mes favoris",
+    "home": "Accueil",
     "logout": "Se déconnecter",
-    "products": "Plantes",
+    "products": "Boutique",
     "profile": "Profil"
   },
   "notFound": "Cette page n'existe pas",
