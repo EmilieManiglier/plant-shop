@@ -26,6 +26,7 @@ const App = () => {
 
   const authRoutes = [
     { path: routes.login.path, type: 'login' },
+    { path: routes.signUp.path, type: 'signUp' },
     { path: routes.forgotPassword.path, type: 'forgotPassword' },
     { path: routes.resetPassword.path, type: 'resetPassword' }
   ];

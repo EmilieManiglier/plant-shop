@@ -15,7 +15,7 @@ import { formatLocalizedCurrency } from 'helpers';
 import { useFetch } from 'hooks';
 import { routes } from 'router';
 
-import { background1 } from 'assets/img';
+import { background6 } from 'assets/img';
 
 const treatments = [
   {
@@ -68,7 +68,7 @@ const ProductShowPage = () => {
   return (
     <>
       <section className="h-[25rem] relative after:content-empty after:absolute after:inset-0 after:bg-gray-900/25">
-        <img src={background1} alt="" className="img-cover" />
+        <img src={background6} alt="" className="img-cover" />
       </section>
 
       {!product && (

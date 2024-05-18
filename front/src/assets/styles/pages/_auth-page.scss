@@ -2,7 +2,7 @@
 	@apply h-screen relative;
 
 	&::after {
-		@apply content-[''] absolute inset-0 bg-black/25;
+		@apply content-empty absolute inset-0 bg-black/25;
 	}
 }
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ProductsList, useProducts } from 'components';
 
-import { background1 } from 'assets/img';
+import { background2 } from 'assets/img';
 
 const ProductPage = () => {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ const ProductPage = () => {
   return (
     <>
       <section className="h-[25rem] relative after:content-empty after:absolute after:inset-0 after:bg-gray-900/25">
-        <img src={background1} alt="" className="img-cover" />
+        <img src={background2} alt="" className="img-cover" />
       </section>
 
       <section className="main-container my-24">

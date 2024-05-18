@@ -1,4 +1,6 @@
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import { Icon } from 'components';
 
@@ -13,34 +15,41 @@ const advantages = [
 const images = [background2, background3, background4, background5];
 
 const Footer = () => {
+  const user = useSelector((state) => state.user);
   const { t } = useTranslation();
   const year = new Date().getFullYear();
 
   return (
     <>
       <section className="bg-beige-100">
-        <div className="lg:grid lg:grid-cols-3 lg:border-b lg:border-gray-300">
-          {advantages.map((advantage, i) => (
-            <div
-              key={`advantage-${i}`}
-              className="p-4 flex items-center gap-4 border-b border-gray-900 lg:border-none lg:justify-center"
-            >
-              <Icon name={advantage.icon} className="text-green-500" />
+        {user.isLoggedIn && (
+          <>
+            <div className="lg:grid lg:grid-cols-3 lg:border-b lg:border-gray-300">
+              {advantages.map((advantage, i) => (
+                <div
+                  key={`advantage-${i}`}
+                  className="p-4 flex items-center gap-4 border-b border-gray-900 lg:border-none lg:justify-center"
+                >
+                  <Icon name={advantage.icon} className="text-green-500" />
 
-              <p className="font-title text-xl lg:text-lg">{t(`home.advantages.${advantage.type}.title`)}</p>
+                  <p className="font-title text-xl lg:text-lg">{t(`home.advantages.${advantage.type}.title`)}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="grid grid-cols-12 gap-6 main-container py-10 lg:grid-cols-4">
-          {images.map((image, i) => (
-            <div key={`background-${i}`} className="col-span-6 lg:col-span-1">
-              <img src={image} alt="" className="img-cover aspect-square" />
+            <div className="grid grid-cols-12 gap-6 main-container py-10 lg:grid-cols-4">
+              {images.map((image, i) => (
+                <div key={`background-${i}`} className="col-span-6 lg:col-span-1">
+                  <img src={image} alt="" className="img-cover aspect-square" />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
 
-        <div className="grid grid-cols-2 gap-6 main-container md:grid-cols-12 md:py-8">
+        <div
+          className={clsx('grid grid-cols-2 gap-6 main-container md:grid-cols-12 md:py-8', !user.isLoggedIn && 'py-8')}
+        >
           <div className="col-span-2 md:col-span-6">
             <h2 className="text-2xl font-title">{t('aboutShort')}</h2>
             <p className="my-6 lg:max-w-[75%]">

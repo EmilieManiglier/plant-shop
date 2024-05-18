@@ -33,6 +33,7 @@ export { default as Footer } from 'components/base/navigation/Footer';
 export { default as CustomTable } from 'components/base/table/CustomTable';
 /* Auth */
 export { default as LoginForm } from 'components/auth/LoginForm';
+export { default as SignUpForm } from 'components/auth/SignUpForm';
 export { default as ForgotPasswordForm } from 'components/auth/ForgotPasswordForm';
 export { default as ResetPasswordForm } from 'components/auth/ResetPasswordForm';
 /* Products */

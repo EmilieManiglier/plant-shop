@@ -39,6 +39,10 @@
     @apply animate-pulse bg-gray-400;
   }
 
+  .simple-link {
+    @apply underline underline-offset-2 hover:no-underline;
+  }
+
   .truncate-line {
     /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
     display: -webkit-box;

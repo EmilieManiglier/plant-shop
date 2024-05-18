@@ -7,7 +7,7 @@ import { FormInput, Logo } from 'components';
 import { mailRegex } from 'constants';
 import { routes } from 'router';
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const { t } = useTranslation();
   const { isValid, isLoading, onSubmit, submitClasses } = useFormContext();
 
@@ -15,6 +15,23 @@ const LoginForm = () => {
     <>
       <form onSubmit={onSubmit}>
         <Logo className="mx-auto w-fit mb-12" />
+
+        <div className="flex-center-between gap-4 mt-6">
+          <FormInput
+            name="lastname"
+            label={t('form:lastname')}
+            className="w-1/2"
+            placeholder={t('form:placeholders.lastname')}
+            icon="user"
+          />
+          <FormInput
+            name="firstname"
+            label={t('form:firstname')}
+            className="w-1/2"
+            placeholder={t('form:placeholders.firstname')}
+            icon="user"
+          />
+        </div>
 
         <FormInput
           name="email"
@@ -49,13 +66,13 @@ const LoginForm = () => {
       </form>
 
       <div className="flex items-center gap-1 flex-wrap mt-6">
-        <span>{t('auth:login.signUp')}</span>
-        <Link to={routes.signUp.path} className="font-bold simple-link">
-          {t('auth:login.signUpCta')}
+        <span>{t('auth:signUp.login')}</span>
+        <Link to={routes.login.path} className="font-bold simple-link">
+          {t('auth:signUp.loginCta')}
         </Link>
       </div>
     </>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

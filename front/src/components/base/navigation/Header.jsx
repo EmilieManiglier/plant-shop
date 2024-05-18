@@ -75,8 +75,8 @@ const Header = () => {
                 </li>
 
                 <li className="text-center lg:hidden">
-                  <NavLink className="font-title text-xl flex-center-center gap-4">
-                    <Icon name="right-from-bracket" />
+                  <NavLink className="navlink text-xl flex-center-center gap-4">
+                    <Icon name="right-from-bracket" className="hidden sm:block" />
                     {t('navigation.logout')}
                   </NavLink>
                 </li>

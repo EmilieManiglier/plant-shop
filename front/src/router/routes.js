@@ -26,6 +26,9 @@ const routes = {
   },
   resetPassword: {
     path: '/nouveau-mot-de-passe'
+  },
+  signUp: {
+    path: '/inscription'
   }
 };
 

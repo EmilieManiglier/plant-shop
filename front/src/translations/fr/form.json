@@ -12,6 +12,8 @@
   "passwordConfirmationInvalid": "Les mots de passe doivent être identiques",
   "placeholders": {
     "email": "Votre email",
+    "firstname": "Votre prénom",
+    "lastname": "Votre nom",
     "password": "Votre mot de passe"
   },
   "price": "Prix",
