@@ -19,11 +19,11 @@
 
 @layer base {
 	.h1 {
-    @apply font-title text-[3rem] leading-[1.1] md:text-[4rem];
+    @apply font-title text-[2.2rem] leading-[1.1] md:text-[3rem];
   }
 
   .h2 {
-    @apply font-title leading-[1.2] text-[2.3rem] lg:text-[2.9rem];
+    @apply font-title leading-[1.2] text-[1.8rem] lg:text-[2rem];
   }
 
   .h3 {

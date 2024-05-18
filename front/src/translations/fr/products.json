@@ -3,10 +3,14 @@
     "success": "La plante a été ajoutée avec succès.",
     "title": "Ajouter une plante"
   },
+  "allProducts": "Toutes les plantes",
   "favorites": {
     "deleteSuccess": "La plante a été supprimée de vos favoris",
     "success": "La plante a été ajoutée dans vos favoris"
   },
   "homeTitle": "Nouvelles plantes",
-  "noProducts": "Aucun plante disponible"
+  "informations": "Informations complémentaires",
+  "noProducts": "Aucun plante disponible",
+  "productNotFound": "La plante que vous cherchez n'a pas été trouvée ou n'est pas disponible pour le moment 🍃",
+  "seeProductsAvailable": "Voir les plantes disponibles"
 }

@@ -1,31 +1,36 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useParams } from 'react-router-dom';
 
-import { Icon } from 'components';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionProvider,
+  AccordionTitle,
+  Banner,
+  Icon,
+  ProductShowSkeleton
+} from 'components';
 import { formatLocalizedCurrency } from 'helpers';
+import { useFetch } from 'hooks';
+import { routes } from 'router';
 
-import plant from 'assets/img/plant-1.jpg';
+import { background1 } from 'assets/img';
 
 const treatments = [
   {
-    type: 'watering',
-    title: 'Arrosage',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+    type: 'description',
+    label: 'Description',
+    value: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
   },
+  { type: 'watering', label: 'Arrosage', value: 'Arroser une à deux fois par semaine' },
   {
     type: 'fertilizer',
-    title: 'Engrais',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+    label: 'Engrais',
+    value: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
   },
-  {
-    type: 'light',
-    title: 'Lumière',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
-  },
-  {
-    type: 'temperature',
-    title: 'Température',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
-  }
+  { type: 'light', label: 'Lumière', value: 'Ne pas exposer directement au soleil' },
+  { type: 'temperature', label: 'Température', value: 'Attention au froid' }
 ];
 
 const getTreatmentIcon = (type) => {
@@ -39,55 +44,93 @@ const getTreatmentIcon = (type) => {
     case 'temperature':
       return 'thermometer-half';
     default:
-      return '';
+      return 'bars-staggered';
   }
 };
 
 const ProductShowPage = () => {
   const { t } = useTranslation();
+  const { call: productCall, data: product, loading: productLoading } = useFetch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const getProduct = () => {
+      productCall({ url: `/products/${id}` });
+    };
+
+    getProduct();
+  }, [id]);
+
+  if (productLoading) {
+    return <ProductShowSkeleton />;
+  }
 
   return (
-    <div className="grid grid-cols-12 gap-8">
-      <div
-        className="col-span-9 bg-green-50 bg-no-repeat bg-right px-12 py-32"
-        style={{ backgroundImage: `url(${plant})` }}
-      >
-        <div className="flex flex-col-reverse">
-          <h1 className="h1 mb-12">Pink Dragon</h1>
-          <h2 className="h2 mb-2">Alocasia Baginda</h2>
+    <>
+      <section className="h-[25rem] relative after:content-empty after:absolute after:inset-0 after:bg-gray-900/25">
+        <img src={background1} alt="" className="img-cover" />
+      </section>
+
+      {!product && (
+        <div className="main-container my-12">
+          <Banner type="error">
+            <p>{t('products:productNotFound')}</p>
+          </Banner>
+          <Link to={routes.products.path} className="btn w-fit mt-6">
+            {t('products:seeProductsAvailable')}
+          </Link>
         </div>
+      )}
 
-        <p className="max-w-[66%]">
-          Dolore eu Lorem pariatur duis dolore ipsum sit consectetur aliquip consectetur deserunt ad. Adipisicing
-          laborum esse enim et in amet est est cillum exercitation ullamco cillum qui amet. Labore id amet Lorem et eu
-          quis amet. Voluptate et aliqua sit dolor culpa cupidatat ad consectetur. Ea mollit incididunt enim duis fugiat
-          cupidatat.
-        </p>
+      {product && (
+        <section className="main-container my-12">
+          <h1 className="h1 underlined flex-center-between flex-wrap gap-8 mb-12">
+            <span>{product.name}</span>
+            <span>{formatLocalizedCurrency(product.price)}</span>
+          </h1>
 
-        <p className="text-2xl font-bold my-12">{formatLocalizedCurrency(12.99)}</p>
-
-        <button type="button" className="btn">
-          {t('buttons.addToCart')}
-        </button>
-      </div>
-
-      <div className="col-span-3 py-32 pr-4">
-        <h2 className="h2 mb-12">Traitements & Faits</h2>
-
-        <div className="flex flex-col gap-y-8">
-          {treatments.map((treatment, i) => (
-            <div key={`plant-treatment-${i}`} className="flex items-start gap-8">
-              <Icon name={getTreatmentIcon(treatment.type)} className="text-green-500 mt-2 w-6 h-6" />
-
-              <div>
-                <h3 className="uppercase tracking-widest mb-2">{treatment.title}</h3>
-                <p>{treatment.description}</p>
+          <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
+            <div className="lg:col-span-4">
+              <div className="rounded-2xl overflow-hidden h-80 mb-12">
+                {product.image && <img src={product.image} alt="" className="img-cover" />}
               </div>
+
+              <div className="mb-12 md:flex-center-between lg:mb-6">
+                <p className="mb-2">Quantité</p>
+
+                {/* TODO: Add quantity selector */}
+                <div className="border border-gray-900 rounded-full px-4 py-2 w-32">1</div>
+              </div>
+
+              <button type="button" className="btn w-full mb-12 lg:mb-0">
+                {t('buttons.addToCart')}
+              </button>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
+
+            <div className="lg:col-span-8">
+              <h2 className="h2 mb-12">{t('products:informations')}</h2>
+
+              <AccordionProvider defaultOpen={[0]} allowMultipleOpen>
+                {treatments.map((treatment, i) => (
+                  <Accordion key={`accordion-${i}`} itemIndex={i}>
+                    <AccordionTitle icon={{ name: 'angle-down', class: 'accordion-arrow' }}>
+                      <div className="flex items-center gap-6">
+                        <Icon name={getTreatmentIcon(treatment.type)} />
+                        {treatment.label}
+                      </div>
+                    </AccordionTitle>
+
+                    <AccordionContent>
+                      <p>{treatment.value}</p>
+                    </AccordionContent>
+                  </Accordion>
+                ))}
+              </AccordionProvider>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 

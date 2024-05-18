@@ -35,6 +35,10 @@
     @apply opacity-50 cursor-not-allowed;
   }
 
+  .skeleton {
+    @apply animate-pulse bg-gray-400;
+  }
+
   .truncate-line {
     /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
     display: -webkit-box;

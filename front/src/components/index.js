@@ -6,6 +6,7 @@ export { default as AuthPage } from 'components/pages/AuthPage';
 export { default as ProductsPage } from 'components/pages/ProductsPage';
 export { default as ProductAddPage } from 'components/pages/ProductAddPage';
 /* Base */
+export { AccordionProvider, Accordion, AccordionTitle, AccordionContent } from 'components/base/accordion/Accordion';
 export { default as Icon } from 'components/base/images/Icon';
 export { default as Logo } from 'components/base/images/Logo';
 /* Forms */
@@ -38,6 +39,7 @@ export { default as ResetPasswordForm } from 'components/auth/ResetPasswordForm'
 export { default as ProductsList } from 'components/products/list/ProductsList';
 export { default as ProductItem } from 'components/products/list/ProductItem';
 export { default as ProductShowPage } from 'components/products/show/ProductShowPage';
+export { default as ProductShowSkeleton } from 'components/products/show/ProductShowSkeleton';
 export { default as ProductForm } from 'components/products/edit/ProductForm';
 /* User */
 export { default as UserDropdown } from 'components/user/shared/UserDropdown';

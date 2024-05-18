@@ -8,14 +8,6 @@
 	}
 }
 
-.app:not(.accueil) {
-	.select-user {
-		&__indicator {
-			@apply text-gray-600;
-		}
-	}
-}
-
 /* stylelint-disable */
 .select-user__menu-portal {
   .select-user__menu {
