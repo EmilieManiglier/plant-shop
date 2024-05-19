@@ -24,6 +24,22 @@ const routes = {
     path: '/plante/:id',
     private: true
   },
+  userDashboard: {
+    path: '/tableau-de-bord',
+    private: true
+  },
+  userInformations: {
+    path: '/tableau-de-bord/informations',
+    private: true
+  },
+  userContact: {
+    path: '/tableau-de-bord/informations-contact',
+    private: true
+  },
+  userFavorites: {
+    path: '/tableau-de-bord/favoris',
+    private: true
+  },
   resetPassword: {
     path: '/nouveau-mot-de-passe'
   },

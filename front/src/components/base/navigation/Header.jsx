@@ -66,14 +66,10 @@ const Header = () => {
                 </li>
 
                 <li className="text-center mb-12 lg:hidden">
-                  <NavLink className="navlink">{t('navigation.profile')}</NavLink>
+                  <NavLink className="navlink">{t('navigation.dashboard')}</NavLink>
                 </li>
 
-                <li className="text-center mb-24 lg:hidden">
-                  <NavLink className="navlink">{t('navigation.favorites')}</NavLink>
-                </li>
-
-                <li className="text-center lg:hidden">
+                <li className="flex-center-center lg:hidden">
                   <button
                     type="button"
                     className="navlink text-xl flex-center-center gap-4"

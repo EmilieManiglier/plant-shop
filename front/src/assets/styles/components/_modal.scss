@@ -1,0 +1,7 @@
+.modal {
+	@apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-50 rounded-2xl overflow-hidden flex flex-col justify-between max-w-2xl max-h-[80%] bg-white shadow-md p-4 opacity-0 transition-opacity duration-200 ease-linear;
+
+	&.open {
+		@apply opacity-100 z-50;
+	}
+}

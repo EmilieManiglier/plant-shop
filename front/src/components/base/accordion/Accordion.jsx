@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { each, sortBy, union } from 'lodash';
 import { arrayOf, bool, node, number, oneOfType, shape, string } from 'prop-types';
-import { createContext, useContext, useRef } from 'react';
+import { createContext, useContext, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { Icon } from 'components';
 import { useSafeState } from 'hooks';
@@ -22,10 +23,16 @@ export const AccordionProvider = ({ children, allowMultipleOpen = false, default
 };
 
 export const Accordion = ({ children, itemIndex, className = '' }) => {
-  const { activeIndex } = useContext(AccordionContext);
+  const { activeIndex, setActiveIndex } = useContext(AccordionContext);
   const isOpen = activeIndex.includes(itemIndex);
   const [heights, setHeights] = useSafeState([]);
   const elementRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Close accordion when navigating to another page
+    if (isOpen) setActiveIndex([]);
+  }, [location.pathname]);
 
   return (
     <AccordionItemContext.Provider value={{ itemIndex, isOpen, heights, setHeights, elementRef }}>

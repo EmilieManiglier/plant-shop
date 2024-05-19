@@ -7,11 +7,13 @@
     "addToCart": "Ajouter au panier",
     "addToFavorites": "Ajouter aux favoris",
     "buyPlants": "Acheter vos plantes",
+    "cancel": "Annuler",
     "checkout": "Valider ma commande",
     "closeCart": "Fermer le panier",
     "decline": "Refuser",
     "deleteItem": "Supprimer ce produit du panier",
     "readMore": "En savoir plus",
+    "save": "Enregistrer",
     "seeCart": "Voir le panier",
     "seeDetails": "Voir le détail",
     "seePlantShow": "Voir la fiche de la plante",
@@ -51,11 +53,10 @@
   },
   "navigation": {
     "copyright": "© {{ year }} Leaf Place. Développé par Émilie Maniglier",
-    "favorites": "Mes favoris",
+    "dashboard": "Mon compte",
     "home": "Accueil",
     "logout": "Se déconnecter",
-    "products": "Boutique",
-    "profile": "Profil"
+    "products": "Boutique"
   },
   "notFound": "Cette page n'existe pas",
   "terms": {

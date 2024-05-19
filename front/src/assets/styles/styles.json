@@ -1,4 +1,7 @@
 {
+  "boxShadow": {
+    "card": "0 0px 25px -6px rgba(29, 1, 80, .25)"
+  },
   "colors": {
     "gray": {
       "50": "#fafbfc",

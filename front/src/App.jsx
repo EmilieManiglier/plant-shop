@@ -13,7 +13,11 @@ import {
   ProductAddPage,
   ProductContextProvider,
   ProductShowPage,
-  ProductsPage
+  ProductsPage,
+  UserContactForm,
+  UserDashboardPage,
+  UserFavoritesList,
+  UserInformationsForm
 } from 'components';
 import { useCurrentUser } from 'hooks';
 import { PrivateRoute, routes } from 'router';
@@ -91,6 +95,41 @@ const App = () => {
               </PrivateRoute>
             }
           />
+
+          {/* User Dashboard nested Route */}
+          <Route
+            path={routes.userDashboard.path}
+            element={
+              <PrivateRoute>
+                <UserDashboardPage />
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path={routes.userInformations.path}
+              element={
+                <PrivateRoute>
+                  <UserInformationsForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.userContact.path}
+              element={
+                <PrivateRoute>
+                  <UserContactForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={routes.userFavorites.path}
+              element={
+                <PrivateRoute>
+                  <UserFavoritesList />
+                </PrivateRoute>
+              }
+            />
+          </Route>
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

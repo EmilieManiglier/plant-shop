@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from 'hooks';
-import { resetUser } from 'store';
+import { resetUser, setUser } from 'store';
 
 export const useCurrentUser = () => {
   const dispatch = useDispatch();
@@ -13,5 +13,9 @@ export const useCurrentUser = () => {
     if (status === 204) dispatch(resetUser());
   };
 
-  return { isLoggedIn: user.isLoggedIn, user, logoutUser, logoutLoading };
+  const updateStoredUser = (newUser) => {
+    dispatch(setUser(newUser));
+  };
+
+  return { isLoggedIn: user.isLoggedIn, user, logoutUser, logoutLoading, updateStoredUser };
 };

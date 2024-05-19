@@ -1,24 +1,36 @@
 import clsx from 'clsx';
 import { bool, func, node } from 'prop-types';
 
+import 'assets/styles/components/_modal.scss';
+
 const Modal = ({ isOpen, body, header = null, footer = null, onClickOutside = null, onClose = null }) => {
   return (
-    <div className={clsx('modal', isOpen && 'is-active')}>
-      <div className="modal-background" onClick={() => onClickOutside && onClickOutside()}></div>
-      {header || footer ? (
-        <div className="modal-card">
-          {header && <header className="modal-card-head">{header}</header>}
+    <>
+      <div
+        onClick={() => onClickOutside && onClickOutside()}
+        className={clsx('fixed w-full h-full inset-0 bg-black opacity-20 z-50', isOpen ? 'block' : 'hidden')}
+      ></div>
+      <div className={clsx('modal', isOpen && 'open')}>
+        <div onClick={() => onClickOutside && onClickOutside()}></div>
+        {header || footer ? (
+          <div>
+            {header && <header>{header}</header>}
 
-          <section className="modal-card-body">{body}</section>
-          {footer && <footer className="modal-card-foot">{footer}</footer>}
-        </div>
-      ) : (
-        <>
-          <div className="modal-content">{body}</div>
-          {onClose && <button className="modal-close is-large" aria-label="close" onClick={() => onClose()}></button>}
-        </>
-      )}
-    </div>
+            <section>{body}</section>
+            {footer && <footer>{footer}</footer>}
+          </div>
+        ) : (
+          <>
+            <div>{body}</div>
+            {onClose && (
+              <button type="button" className="btn mt-4" onClick={onClose}>
+                Close
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 @layer base {
   .main-container {
-    @apply px-8 xl:px-20 2xl:px-40 3xl:px-72 print:px-2;
+    @apply px-8 lg:px-20 2xl:px-40 3xl:px-72 print:px-2;
   }
 
 	.img-cover {

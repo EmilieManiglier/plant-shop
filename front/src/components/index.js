@@ -5,6 +5,7 @@ export { default as NotFoundPage } from 'components/pages/NotFoundPage';
 export { default as AuthPage } from 'components/pages/AuthPage';
 export { default as ProductsPage } from 'components/pages/ProductsPage';
 export { default as ProductAddPage } from 'components/pages/ProductAddPage';
+export { default as UserDashboardPage } from 'components/pages/UserDashboardPage';
 /* Base */
 export { AccordionProvider, Accordion, AccordionTitle, AccordionContent } from 'components/base/accordion/Accordion';
 export { default as Icon } from 'components/base/images/Icon';
@@ -43,7 +44,11 @@ export { default as ProductShowPage } from 'components/products/show/ProductShow
 export { default as ProductShowSkeleton } from 'components/products/show/ProductShowSkeleton';
 export { default as ProductForm } from 'components/products/edit/ProductForm';
 /* User */
+export { default as UserContactForm } from 'components/user/edit/UserContactForm';
+export { default as UserInformationsForm } from 'components/user/edit/UserInformationsForm';
+export { default as UserFavoritesList } from 'components/user/list/UserFavoritesList';
 export { default as UserDropdown } from 'components/user/shared/UserDropdown';
+export { default as PasswordModal } from 'components/user/shared/PasswordModal';
 /* Cart */
 export { default as Cart } from 'components/cart/Cart';
 /* Context */

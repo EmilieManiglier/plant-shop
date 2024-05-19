@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { bool, object, string } from 'prop-types';
-import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
