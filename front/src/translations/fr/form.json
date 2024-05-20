@@ -1,4 +1,6 @@
 {
+  "city": "Ville",
+  "country": "Pays",
   "description": "Description",
   "email": "Email",
   "emailInvalid": "Format d'email invalide",
@@ -10,8 +12,11 @@
   "password": "Mot de passe",
   "passwordConfirmation": "Répétez le mot de passe",
   "passwordConfirmationInvalid": "Les mots de passe doivent être identiques",
+  "phone": "Téléphone",
   "placeholders": {
     "email": "Votre email",
+    "firstname": "Votre prénom",
+    "lastname": "Votre nom",
     "password": "Votre mot de passe"
   },
   "price": "Prix",
@@ -21,7 +26,9 @@
     "default": "Choisissez une option",
     "empty": "Aucune option disponible"
   },
+  "street": "Numéro et rue",
   "submit": "Valider",
   "terms": "Conditions générales d'utilisation",
-  "termsLabel": "J'ai lu et j'accepte les <0>conditions générales d'utilisation</0>"
+  "termsLabel": "J'ai lu et j'accepte les <0>conditions générales d'utilisation</0>",
+  "zipCode": "Code postal"
 }

@@ -1,11 +1,14 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
+  faAddressBook,
   faAngleDown,
   faAngleLeft,
   faAngleRight,
   faAngleUp,
   faBagShopping,
+  faBars,
+  faBarsStaggered,
   faCartArrowDown,
   faDroplet,
   faEnvelope,
@@ -30,11 +33,14 @@ import {
 import { faHeart as farHeart } from '@fortawesome/pro-regular-svg-icons';
 
 library.add(
+  faAddressBook,
   faAngleDown,
   faAngleUp,
   faAngleLeft,
   faAngleRight,
   faBagShopping,
+  faBars,
+  faBarsStaggered,
   faCartArrowDown,
   faDroplet,
   faEnvelope,

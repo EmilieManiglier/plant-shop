@@ -1,23 +1,26 @@
 import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
-import { Icon, ProductsList, useProducts } from 'components';
-import { routes } from 'router';
+import { ProductsList, useProducts } from 'components';
+
+import { background2 } from 'assets/img';
 
 const ProductPage = () => {
   const { t } = useTranslation();
   const { products } = useProducts();
 
   return (
-    <div className="main-container">
-      <Link to={routes.productAdd.path} className="btn ml-auto my-8 w-fit">
-        {t('buttons.add')}
-        <Icon name="add" />
-      </Link>
+    <>
+      <section className="h-[25rem] relative after:content-empty after:absolute after:inset-0 after:bg-gray-900/25">
+        <img src={background2} alt="" className="img-cover" />
+      </section>
 
-      {!isEmpty(products) && <ProductsList page="products" />}
-    </div>
+      <section className="main-container my-24">
+        <h1 className="h1 underlined mb-12">{t('products:allProducts')}</h1>
+
+        {!isEmpty(products) && <ProductsList page="products" />}
+      </section>
+    </>
   );
 };
 

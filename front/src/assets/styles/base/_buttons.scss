@@ -1,7 +1,7 @@
 @layer components {
 	.btn {
     /* stylelint-disable max-line-length */
-    @apply rounded-full px-6 py-3 bg-green-500 text-white flex items-center gap-3 justify-center transition-colors duration-300 ease-in-out outline-none cursor-pointer;
+    @apply font-text rounded-full px-6 py-3 bg-green-500 text-white flex items-center gap-3 justify-center transition-colors duration-300 ease-in-out outline-none cursor-pointer border-2 border-green-500;
     /* stylelint-enable max-line-length */
 
     &:focus-visible {
@@ -9,19 +9,11 @@
     }
 
     &:hover:not(:disabled) {
-      @apply bg-success-500;
+      @apply bg-transparent text-green-500;
     }
 
     &.outlined {
-      @apply bg-white border-2 border-green-500 text-green-500;
-
-      &:hover:not(:disabled) {
-        @apply bg-white border-success-500 text-success-500;
-      }
-    }
-
-    &.white {
-      @apply bg-white text-green-500;
+      @apply bg-transparent border-2 border-green-500 text-green-500;
 
       &:hover:not(:disabled) {
         @apply bg-green-500 text-white;
@@ -30,14 +22,6 @@
 
     &:disabled {
       @apply opacity-50 cursor-not-allowed;
-    }
-
-    &.gray {
-      @apply bg-gray-200 text-gray-700 rounded-md p-2 w-8 h-8;
-
-      &:not(:disabled):hover {
-        @apply bg-gray-300;
-      }
     }
 
     &.large {

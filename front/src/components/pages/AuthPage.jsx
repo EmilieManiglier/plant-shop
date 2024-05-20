@@ -5,24 +5,26 @@ import { useEffect, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Banner, ForgotPasswordForm, LoginForm, ResetPasswordForm } from 'components';
+import { Banner, ForgotPasswordForm, LoginForm, ResetPasswordForm, SignUpForm } from 'components';
 import { useFetch, useSafeState } from 'hooks';
 import { routes } from 'router';
 import { setUser } from 'store';
 
-import authBackground from 'assets/img/background_1.jpg';
+import { background1 } from 'assets/img';
 import 'assets/styles/pages/_auth-page.scss';
 
 const AuthPage = ({ type }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
   const [requestPassword, setRequestPassword] = useSafeState({ success: false, email: '' });
   const [authError, setAuthError] = useSafeState({ login: '' });
 
   const { call: loginCall, loading: loginLoading } = useFetch();
+  const { call: signUpCall, loading: signUpLoading, error: signUpError } = useFetch();
   const { loading: forgotPasswordLoading } = useFetch();
   const { loading: resetPasswordLoading } = useFetch();
 
@@ -32,6 +34,8 @@ const AuthPage = ({ type }) => {
         return { email: '' };
       case 'resetPassword':
         return { password: '', passwordConfirmation: '' };
+      case 'signUp':
+        return { email: '', firstname: '', lastname: '', password: '' };
       default:
         return { email: '', password: '' };
     }
@@ -49,12 +53,12 @@ const AuthPage = ({ type }) => {
   } = useForm({ mode: 'onBlur', defaultValues });
 
   const isLoading = useMemo(
-    () => loginLoading || forgotPasswordLoading || resetPasswordLoading,
-    [loginLoading, forgotPasswordLoading, resetPasswordLoading]
+    () => loginLoading || signUpLoading || forgotPasswordLoading || resetPasswordLoading,
+    [loginLoading, signUpLoading, forgotPasswordLoading, resetPasswordLoading]
   );
 
   const buttonClassList = useMemo(() => {
-    return clsx('mt-6 btn', {
+    return clsx('mt-6 btn w-full uppercase font-title', {
       'cursor-disallow': !isValid,
       'is-loading': isLoading
     });
@@ -70,6 +74,8 @@ const AuthPage = ({ type }) => {
   };
 
   const logUser = async () => {
+    if (!isValid) trigger();
+
     setAuthError((prev) => ({ ...prev, login: '' }));
 
     const { data, error, headers } = await loginCall({
@@ -87,6 +93,23 @@ const AuthPage = ({ type }) => {
     if (!isEmpty(data)) {
       dispatch(setUser({ ...data, token: headers.authorization, isLoggedIn: true }));
       navigate(routes.home.path);
+    }
+  };
+
+  const signUpUser = async () => {
+    if (!isValid) trigger();
+
+    const { data } = await signUpCall({
+      url: '/users/sign_up',
+      method: 'post',
+      params: {
+        user: getValues()
+      }
+    });
+
+    if (!isEmpty(data)) {
+      // Redirect to login and add sign_up=success to display a success message
+      navigate({ pathname: routes.login.path, search: createSearchParams({ sign_up: 'success' }).toString() });
     }
   };
 
@@ -115,6 +138,9 @@ const AuthPage = ({ type }) => {
       case 'resetPassword':
         submitCallback = resetPassword;
         break;
+      case 'signUp':
+        submitCallback = signUpUser;
+        break;
       default:
         break;
     }
@@ -137,13 +163,16 @@ const AuthPage = ({ type }) => {
   return (
     <div className="min-h-screen relative">
       <div className="auth-page-img">
-        <img src={authBackground} alt="" height="600" width="300" className="w-full h-full object-cover" />
+        <img src={background1} alt="" height="600" width="300" className="w-full h-full object-cover" />
       </div>
 
       <div className="auth-form">
+        {signUpError && !searchParams.get('sign_up') && <Banner type="error">{t('auth:signUp.error')}</Banner>}
+        {searchParams.get('sign_up') === 'success' && <Banner type="success">{t('auth:signUp.success')}</Banner>}
         <FormProvider {...formProviderValues}>
           {authError?.[type] && <Banner type="error">{authError[type]}</Banner>}
           {type === 'login' && <LoginForm />}
+          {type === 'signUp' && <SignUpForm />}
           {type === 'forgotPassword' && <ForgotPasswordForm />}
           {type === 'resetPassword' && <ResetPasswordForm />}
         </FormProvider>
@@ -153,7 +182,7 @@ const AuthPage = ({ type }) => {
 };
 
 AuthPage.propTypes = {
-  type: oneOf(['login', 'forgotPassword', 'resetPassword']).isRequired
+  type: oneOf(['login', 'signUp', 'forgotPassword', 'resetPassword']).isRequired
 };
 
 export default AuthPage;

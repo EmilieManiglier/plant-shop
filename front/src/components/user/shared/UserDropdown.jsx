@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { bool, node, shape, string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactSelect, { components } from 'react-select';
 
 import { Icon } from 'components';
-import { useFetch } from 'hooks';
-import { resetUser } from 'store';
+import { useCurrentUser } from 'hooks';
+import { routes } from 'router';
 
 import 'assets/styles/components/_user-dropdown.scss';
 
@@ -23,7 +23,7 @@ const MenuOption = (props) => {
     <components.Option {...props}>
       <button
         type="button"
-        className="hover:bg-gray-500 hover:text-white text-left w-full h-full px-4 py-2"
+        className="hover:bg-gray-900 hover:text-white text-left w-full h-full px-4 py-2"
         disabled={props.data?.disabled}
       >
         {props.data?.icon && <Icon name={props.data.icon} />}
@@ -33,20 +33,15 @@ const MenuOption = (props) => {
   );
 };
 
-const userOptions = [{ label: 'profile' }, { label: 'favorites' }, { label: 'logout' }];
+const userOptions = [{ label: 'dashboard' }, { label: 'logout' }];
 
 const UserDropdown = () => {
-  const dispatch = useDispatch();
-  const { call: logoutCall } = useFetch();
+  const navigate = useNavigate();
+  const { logoutUser } = useCurrentUser();
 
   const handleAction = (option) => {
-    // TODO : handle action for user profile
-    if (option?.label === 'logout') logoutUser();
-  };
-
-  const logoutUser = async () => {
-    const { status } = await logoutCall({ url: '/users/sign_out', method: 'delete' });
-    if (status === 204) dispatch(resetUser());
+    if (option.label === 'dashboard') navigate(routes.userInformations.path);
+    if (option.label === 'logout') logoutUser();
   };
 
   return (

@@ -1,4 +1,7 @@
 {
+  "boxShadow": {
+    "card": "0 0px 25px -6px rgba(29, 1, 80, .25)"
+  },
   "colors": {
     "gray": {
       "50": "#fafbfc",
@@ -8,12 +11,14 @@
       "400": "#b0b7c3",
       "500": "#8a94a6",
       "600": "#4e5d78",
-      "700": "#323b4b"
+      "700": "#323b4b",
+      "900": "#292929"
     },
     "green": {
       "50": "#F5F7F4",
-      "300": "#01C194",
-      "500": "#019875"
+      "100": "#eaecc6",
+      "200": "#d4e3d3",
+      "500": "#0f352e"
     },
     "red": {
       "200": "#ffbaaa",
@@ -29,6 +34,13 @@
       "300": "#ffc652",
       "500": "#FFAB00"
     },
+    "orange": {
+      "500": "#FF5722"
+    },
+    "beige": {
+      "100": "#f4f3e7",
+      "500": "#f1eeda"
+    },
     "yellow": {
       "100": "#ffc72c0d",
       "200": "#fff8e5",
@@ -37,10 +49,13 @@
       "500": "#ffc72c"
     }
   },
+  "content": {
+    "empty": "''"
+  },
   "fontFamily": {
-    "cagliostro": ["Cagliostro", "sans-serif"],
-    "roboto": ["Roboto", "sans-serif"],
-    "rubik": ["Rubik", "sans-serif"]
+    "logo": ["Ultra", "serif"],
+    "text": ["Avenir", "sans-serif"],
+    "title": ["ClashGrotesk", "sans-serif"]
   },
   "fontSize": {
     "2xxl": "2rem"
@@ -48,5 +63,8 @@
   "screens": {
     "3xl": "1920px",
     "4xl": "2224px"
+  },
+  "spacing": {
+    "initial": "initial"
   }
 }

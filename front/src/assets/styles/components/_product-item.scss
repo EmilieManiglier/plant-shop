@@ -1,28 +1,3 @@
 .product-item {
-	@apply bg-white rounded-lg shadow-md flex flex-col relative;
+	@apply bg-green-100 rounded-2xl p-4 flex flex-col relative;
 }
-
-.product-favorite-btn {
-	@apply bg-white h-8 w-8 flex justify-center items-center rounded-full shadow-md absolute top-2 right-2 z-10;
-}
-
-.cart-btn {
-	@apply w-10 h-10 relative transition-[width] duration-500 ease-in-out;
-
-	.cart-btn-content {
-		@apply opacity-0 overflow-hidden whitespace-nowrap text-white;
-	}
-
-	&:hover {
-		@apply w-44;
-
-		.cart-btn-icon {
-			@apply opacity-0 h-0 w-0;
-		}
-
-		.cart-btn-content {
-			@apply opacity-100;
-		}
-	}
-}
-

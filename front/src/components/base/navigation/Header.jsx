@@ -1,8 +1,10 @@
+import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import { Logo, UserDropdown } from 'components';
+import { Icon, Logo, UserDropdown } from 'components';
+import { useCurrentUser, useSafeState } from 'hooks';
 import { routes } from 'router';
 
 import 'assets/styles/components/_header.scss';
@@ -11,19 +13,35 @@ const links = ['home', 'products'];
 
 const Header = () => {
   const { t } = useTranslation();
-  const user = useSelector((state) => state.user);
+  const location = useLocation();
+  const { isLoggedIn, logoutUser, logoutLoading } = useCurrentUser();
+  const [menuOpen, setMenuOpen] = useSafeState(false);
   // const [showCart, setShowCart] = useSafeState(false);
+
+  useEffect(() => {
+    menuOpen && setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
       <header className="header">
-        <nav className="flex gap-4 justify-between items-center p-4">
+        <nav className="flex gap-4 justify-between items-center">
           <NavLink to={routes.home.path}>
-            <Logo color="white" />
+            <Logo />
           </NavLink>
 
-          <ul className="flex items-center gap-x-8">
-            {!user?.token && (
+          <button
+            type="button"
+            className={clsx('btn-mobile-menu', menuOpen && 'open')}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+
+          <ul className={clsx('menu', menuOpen && 'open')}>
+            {!isLoggedIn && (
               <li>
                 <NavLink className="navbar-item" to={routes.login.path}>
                   {t('auth:login.button')}
@@ -31,14 +49,11 @@ const Header = () => {
               </li>
             )}
 
-            {user?.token && (
+            {isLoggedIn && (
               <>
                 {links.map((link, i) => (
-                  <li key={`header-link-${i}`}>
-                    <NavLink
-                      className={({ isActive }) => `navbar-item ${isActive ? 'active' : ''}`}
-                      to={routes[link].path}
-                    >
+                  <li key={`header-link-${i}`} className="mb-12 text-center lg:mb-0">
+                    <NavLink className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`} to={routes[link].path}>
                       {t(`navigation.${link}`)}
                     </NavLink>
                   </li>
@@ -52,8 +67,26 @@ const Header = () => {
                   </button>
                 </li> */}
 
-                <li>
+                <li className="hidden lg:block">
                   <UserDropdown />
+                </li>
+
+                <li className="text-center mb-12 lg:hidden">
+                  <NavLink to={routes.userInformations.path} className="navlink">
+                    {t('navigation.dashboard')}
+                  </NavLink>
+                </li>
+
+                <li className="flex-center-center lg:hidden">
+                  <button
+                    type="button"
+                    className="navlink text-xl flex-center-center gap-4"
+                    onClick={logoutUser}
+                    disabled={logoutLoading}
+                  >
+                    <Icon name="right-from-bracket" className="hidden sm:block" />
+                    {t('navigation.logout')}
+                  </button>
                 </li>
               </>
             )}

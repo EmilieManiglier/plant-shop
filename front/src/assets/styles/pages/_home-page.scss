@@ -1,0 +1,6 @@
+.title-container {
+	@apply absolute bottom-4 left-4 w-[calc(100%-2rem)] bg-green-200 rounded-2xl p-9 md:w-[30rem] md:transform-none lg:left-20;
+
+	animation: fade-slide 500ms ease-in-out;
+}
+

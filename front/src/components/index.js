@@ -5,7 +5,9 @@ export { default as NotFoundPage } from 'components/pages/NotFoundPage';
 export { default as AuthPage } from 'components/pages/AuthPage';
 export { default as ProductsPage } from 'components/pages/ProductsPage';
 export { default as ProductAddPage } from 'components/pages/ProductAddPage';
+export { default as UserDashboardPage } from 'components/pages/UserDashboardPage';
 /* Base */
+export { AccordionProvider, Accordion, AccordionTitle, AccordionContent } from 'components/base/accordion/Accordion';
 export { default as Icon } from 'components/base/images/Icon';
 export { default as Logo } from 'components/base/images/Logo';
 /* Forms */
@@ -32,15 +34,21 @@ export { default as Footer } from 'components/base/navigation/Footer';
 export { default as CustomTable } from 'components/base/table/CustomTable';
 /* Auth */
 export { default as LoginForm } from 'components/auth/LoginForm';
+export { default as SignUpForm } from 'components/auth/SignUpForm';
 export { default as ForgotPasswordForm } from 'components/auth/ForgotPasswordForm';
 export { default as ResetPasswordForm } from 'components/auth/ResetPasswordForm';
 /* Products */
 export { default as ProductsList } from 'components/products/list/ProductsList';
 export { default as ProductItem } from 'components/products/list/ProductItem';
 export { default as ProductShowPage } from 'components/products/show/ProductShowPage';
+export { default as ProductShowSkeleton } from 'components/products/show/ProductShowSkeleton';
 export { default as ProductForm } from 'components/products/edit/ProductForm';
 /* User */
+export { default as UserContactForm } from 'components/user/edit/UserContactForm';
+export { default as UserInformationsForm } from 'components/user/edit/UserInformationsForm';
+export { default as UserFavoritesList } from 'components/user/list/UserFavoritesList';
 export { default as UserDropdown } from 'components/user/shared/UserDropdown';
+export { default as PasswordModal } from 'components/user/shared/PasswordModal';
 /* Cart */
 export { default as Cart } from 'components/cart/Cart';
 /* Context */

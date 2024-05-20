@@ -2,29 +2,26 @@ import clsx from 'clsx';
 import { string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-import plantIcon from 'assets/img/icons/icon-plant.png';
+import { logo } from 'assets/img';
 
-const Logo = ({ className = '', color = 'green' }) => {
+const Logo = ({ className = '' }) => {
   const { t } = useTranslation();
 
-  let logoColor = 'text-green-500';
-
-  if (color === 'white') {
-    logoColor = 'text-green-500 lg:text-white';
-  }
-
   return (
-    <div className={clsx('flex gap-1 items-center logo', logoColor, className)}>
-      <span className="font-cagliostro text-4xl font-bold">{t('meta.titlePart1')}</span>
-      <img src={plantIcon} alt="" className="w-8 h-8 leaf-green" />
-      <span className="font-cagliostro text-4xl font-bold">{t('meta.titlePart2')}</span>
+    <div className={clsx('text-orange-500 relative', className)}>
+      <div className="absolute -right-8 top-0 z-10 h-16 w-16">
+        <img src={logo} alt="Logo" className="img-cover" />
+      </div>
+      <p className="relative z-10 flex flex-col gap-1">
+        <span className="font-logo font-bold text-2xl md:text-4xl">{t('meta.titlePart1')}</span>
+        <span className="font-logo font-bold text-2xl md:text-4xl">{t('meta.titlePart2')}</span>
+      </p>
     </div>
   );
 };
 
 Logo.propTypes = {
-  className: string,
-  color: string
+  className: string
 };
 
 export default Logo;

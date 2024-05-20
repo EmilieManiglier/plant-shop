@@ -1,0 +1,25 @@
+.accordion-title {
+  @apply border-b border-gray-400 py-4 w-full flex justify-between items-center text-left;
+
+  .accordion-arrow {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  &.open {
+    .accordion-arrow {
+      @apply transform rotate-180;
+    }
+  }
+}
+
+.accordion-content {
+  @apply transition-[height,opacity,padding] duration-[240] ease-out;
+
+  &.closed {
+    @apply opacity-0 px-2 py-0 pointer-events-none;
+  }
+
+  &.open {
+    @apply opacity-100 py-4 px-2 pointer-events-auto;
+  }
+}
