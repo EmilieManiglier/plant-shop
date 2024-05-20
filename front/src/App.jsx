@@ -125,7 +125,9 @@ const App = () => {
               path={routes.userFavorites.path}
               element={
                 <PrivateRoute>
-                  <UserFavoritesList />
+                  <ProductContextProvider>
+                    <UserFavoritesList />
+                  </ProductContextProvider>
                 </PrivateRoute>
               }
             />

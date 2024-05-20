@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { isEmpty } from 'lodash';
-import { array, number, shape, string } from 'prop-types';
+import { array, bool, number, shape, string } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -13,7 +13,7 @@ import { routes } from 'router';
 
 import 'assets/styles/components/_product-item.scss';
 
-const ProductItem = ({ product, className = '' }) => {
+const ProductItem = ({ product, className = '', favoriteBtn = true }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { products, setProducts } = useProducts();
@@ -44,18 +44,22 @@ const ProductItem = ({ product, className = '' }) => {
 
   return (
     <div className={clsx('product-item', className)}>
-      <button
-        type="button"
-        className="absolute top-8 right-8 z-10"
-        data-tooltip-id="btn-favorite-tooltip"
-        data-tooltip-content={t('buttons.addToFavorites')}
-        onClick={handleFavorite}
-      >
-        <Icon name="heart" iconStyle={product.favoriteId ? 'fas' : 'far'} className="text-green-500 w-7 h-7" />
-        <span className="sr-only">{t('buttons.addToFavorites')}</span>
-      </button>
+      {favoriteBtn && (
+        <>
+          <button
+            type="button"
+            className="absolute top-8 right-8 z-10"
+            data-tooltip-id="btn-favorite-tooltip"
+            data-tooltip-content={t('buttons.addToFavorites')}
+            onClick={handleFavorite}
+          >
+            <Icon name="heart" iconStyle={product.favoriteId ? 'fas' : 'far'} className="text-green-500 w-7 h-7" />
+            <span className="sr-only">{t('buttons.addToFavorites')}</span>
+          </button>
 
-      <Tooltip id="btn-favorite-tooltip" />
+          <Tooltip id="btn-favorite-tooltip" />
+        </>
+      )}
 
       <div className="rounded-2xl overflow-hidden h-80 w-full transition-img relative shrink-0">
         {product.image ? (
@@ -75,14 +79,16 @@ const ProductItem = ({ product, className = '' }) => {
         </>
       </div>
 
-      <div className="my-10 flex justify-between items-start gap-6">
-        <h3 className="h3">{product.name}</h3>
-        <p className="h3">{formatLocalizedCurrency(product.price)}</p>
-      </div>
+      <div className="h-full flex flex-col justify-between gap-3">
+        <div className="my-10 flex justify-between items-start gap-6">
+          <h3 className="h3">{product.name}</h3>
+          <p className="h3">{formatLocalizedCurrency(product.price)}</p>
+        </div>
 
-      <button type="button" className="btn outlined w-full uppercase" onClick={navigateToProductShow}>
-        {t('buttons.seeDetails')}
-      </button>
+        <button type="button" className="btn outlined w-full uppercase" onClick={navigateToProductShow}>
+          {t('buttons.seeDetails')}
+        </button>
+      </div>
     </div>
   );
 };
@@ -96,7 +102,8 @@ ProductItem.propTypes = {
     image: string,
     categories: array
   }).isRequired,
-  className: string
+  className: string,
+  favoriteBtn: bool
 };
 
 export default ProductItem;

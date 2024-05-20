@@ -14,7 +14,7 @@ const HomePage = () => {
 
   return (
     <>
-      <section className="h-screen relative">
+      <section className="h-[calc(100vh-12rem)] lg:h-[calc(100vh-4rem)] relative">
         <img src={heroBg} alt="" className="img-cover" />
 
         <div className="title-container">

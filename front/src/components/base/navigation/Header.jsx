@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { Icon, Logo, UserDropdown } from 'components';
 import { useCurrentUser, useSafeState } from 'hooks';
@@ -12,9 +13,14 @@ const links = ['home', 'products'];
 
 const Header = () => {
   const { t } = useTranslation();
+  const location = useLocation();
   const { isLoggedIn, logoutUser, logoutLoading } = useCurrentUser();
   const [menuOpen, setMenuOpen] = useSafeState(false);
   // const [showCart, setShowCart] = useSafeState(false);
+
+  useEffect(() => {
+    menuOpen && setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
@@ -66,7 +72,9 @@ const Header = () => {
                 </li>
 
                 <li className="text-center mb-12 lg:hidden">
-                  <NavLink className="navlink">{t('navigation.dashboard')}</NavLink>
+                  <NavLink to={routes.userInformations.path} className="navlink">
+                    {t('navigation.dashboard')}
+                  </NavLink>
                 </li>
 
                 <li className="flex-center-center lg:hidden">

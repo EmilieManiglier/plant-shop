@@ -27,7 +27,7 @@
 		@apply bg-green-100 absolute -top-4 left-0 pt-40 px-20 w-screen h-screen translate-x-full transition-transform duration-500 ease-in-out;
 
 		&.open {
-			@apply translate-x-0 -left-4;
+			@apply translate-x-0 -left-8;
 		}
 
 		@screen lg {
