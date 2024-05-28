@@ -1,3 +1,10 @@
 fr:
   active_admin:
     dashboard: Tableau de bord
+    navigation:
+      categories: Catégories
+      products: Produits
+      users: Utilisateurs
+    informations: Informations
+    products:
+      no_image: Aucune image disponible

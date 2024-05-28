@@ -35,6 +35,7 @@ gem 'blueprinter'
 gem 'activestorage-validator'
 
 gem 'activeadmin'
+gem 'activeadmin_addons'
 gem 'sprockets-rails'
 gem 'sassc-rails'
 
