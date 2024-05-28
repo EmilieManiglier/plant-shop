@@ -3,7 +3,7 @@
 module Api
   module V1
     # ProductsController
-    class ProductsController < ApplicationController
+    class ProductsController < ApiBaseController
       def index
         render json: json_response(Product.all, 'index')
       end

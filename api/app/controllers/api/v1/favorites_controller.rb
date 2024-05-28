@@ -3,7 +3,7 @@
 module Api
   module V1
     # FavoritesController
-    class FavoritesController < ApplicationController
+    class FavoritesController < ApiBaseController
       def index
         render json: FavoriteSerializer.render(current_user.favorites)
       end

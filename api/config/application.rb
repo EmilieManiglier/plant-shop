@@ -44,5 +44,13 @@ module Api
 
     # Set default locale to something other than :en
     I18n.default_locale = :fr
+
+    # For ActiveAdmin : flash message and cookies
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore,
+                          key: "_#{ENV.fetch('COOKIE_NAME', '').downcase}_session",
+                          expire_after: 10.days
   end
 end
