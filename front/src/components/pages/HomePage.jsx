@@ -45,7 +45,7 @@ const HomePage = () => {
       </section>
 
       {!isEmpty(products) && (
-        <section className="p-4 mb-12 lg:p-12">
+        <section className="main-container my-12">
           <h2 className="h2 underlined mb-12">{t('products:homeTitle')}</h2>
 
           <ProductsList page="home" />

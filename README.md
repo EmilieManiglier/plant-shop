@@ -40,7 +40,7 @@ cd api
 bundle exec rspec
 ```
 
-## Testing Swagger UI
+## Testing API with Swagger UI
 
 API Documentation can be found in [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
 All routes, except for the sign in and sign up, are protected by authentication
@@ -68,3 +68,13 @@ All routes, except for the sign in and sign up, are protected by authentication
 
 - Make a call for an authenticated route, for example `/api/v1/products`
 - The response status should be 200 🎉
+
+## Active Admin Back-Office
+
+- Back-office is accessible at: [http://localhost:3000/admin](http://localhost:3000/admin)
+- Login with the default admin user
+
+```
+email: admin@kinoba.fr
+password : password
+```

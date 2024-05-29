@@ -36,3 +36,7 @@ fr:
       updated_not_active: "Votre mot de passe a été modifié avec succès."
     registrations:
       destroyed: "Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt."
+    sessions:
+      signed_in: "Connecté."
+      signed_out: "Déconnecté."
+      already_signed_out: "Déconnecté."
