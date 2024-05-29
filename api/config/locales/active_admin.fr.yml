@@ -1,9 +1,12 @@
 fr:
   active_admin:
     dashboard: Tableau de bord
+    statistics: Statistiques
+    latests_updates: Activités récentes
+    updated_at: a été mis à jour le %{date}
     navigation:
       categories: Catégories
-      products: Produits
+      products: Plantes
       users: Utilisateurs
     informations: Informations
     products:

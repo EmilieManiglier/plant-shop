@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
 
   config.sort_order = 'id_asc'
 
-  permit_params :name, :price, :description, :stock, :image, :category
+  permit_params :name, :price, :description, :stock, :image, category_ids: []
 
   filter :name
   filter :price

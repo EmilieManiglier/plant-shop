@@ -1,0 +1,36 @@
+<div class="dashboard-page">
+	<div class="panel-container activities">
+		<h2 class="panel-title"><%= I18n.t('active_admin.latests_updates') %></h2>
+
+		<ul class="panel-content">
+			<% Product.order(updated_at: :desc).limit(5).each do |product| %>
+				<li>
+					<%= link_to product.name, admin_product_path(product) %>
+					<%= I18n.t('active_admin.updated_at', date: product.updated_at ) %>
+				</li>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="panel-container statistics">
+		<h2 class="panel-title"><%= I18n.t('active_admin.statistics') %></h2>
+
+		<div class="stat-container">
+			<div class="stat-bloc">
+				<div class="stat-icon user"><%= fa_icon 'user' %></div>
+				<p class="stat-number">
+					<span><%= User.count %></span>
+					<span><%= I18n.t('active_admin.navigation.users') %></span>
+				</p>
+			</div>
+
+			<div class="stat-bloc">
+				<div class="stat-icon product"><%= fa_icon 'leaf' %></div>
+				<p class="stat-number">
+					<span><%= Product.count %></span>
+					<span><%= I18n.t('active_admin.navigation.products') %></span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
