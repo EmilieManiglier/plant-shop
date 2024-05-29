@@ -45,6 +45,14 @@ module Api
     # Set default locale to something other than :en
     I18n.default_locale = :fr
 
+    # TODO : This fix the issue with CSRF token in development mode but it's not a good practice
+    # Find a better way to fix this
+    if ENV['RAILS_ENV'] == 'development'
+      # Allow cookies to be sent with cross-site requests
+      config.action_dispatch.cookies_same_site_protection = :none
+      # Disable CSRF protection, making testing easier
+      config.action_controller.default_protect_from_forgery = false
+    end
     # For ActiveAdmin : flash message and cookies
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
