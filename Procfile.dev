@@ -1,0 +1,2 @@
+api: kill -9 $(lsof -i :3000 -t); rm -rf api/tmp/pids/server.pid; cd api && bundle exec rails server --using puma --port=3000 --binding=0.0.0.0
+front: kill -9 $(lsof -i :5100 -t); cd front && yarn run start

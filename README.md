@@ -25,10 +25,7 @@ rbenv rehash
 
 ```bash
 # From app's root
-cd api && rails s
-
-# Open an other terminal
-cd front && yarn install && yarn start
+./scripts/dev
 ```
 
 👉 Front end is accessible at: [http://localhost:5100](http://localhost:5100)
